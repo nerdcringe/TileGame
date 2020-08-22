@@ -24,10 +24,8 @@ public class BGTileManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Generate()
     {
-        NoiseGen.Generate();
-
         for (int x = 0; x < NoiseGen.width; x++)
         {
             for (int y = 0; y < NoiseGen.height; y++)

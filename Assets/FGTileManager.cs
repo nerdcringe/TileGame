@@ -30,7 +30,7 @@ public class FGTileManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Generate()
     {
         for (int x = 0; x < NoiseGen.width; x++)
         {

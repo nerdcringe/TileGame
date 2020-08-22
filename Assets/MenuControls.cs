@@ -8,20 +8,25 @@ public class MenuControls : MonoBehaviour
     public DataManager dataManager;
 
     public UIControls uiControls;
-    public Tilemap bgTilemap;
-    public Tilemap fgTilemap;
+    public BGTileManager bgTileManager;
+    public FGTileManager fgTileManager;
 
     public GameObject titleMenu;
+    public GameObject savesMenu;
     public GameObject inGameUI;
     public GameObject pauseMenu;
 
     public bool inGame = false;
     public bool paused = false;
 
+    bool generateAlready = false;
+
     // Start is called before the first frame update
     void Start()
     {
         TitleMenu();
+        Generate();
+        generateAlready = true;
     }
 
     // Update is called once per frame
@@ -29,26 +34,25 @@ public class MenuControls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (inGame)
+            if (!uiControls.craftingOpened)
             {
-                if (!uiControls.craftingOpened)
-                {
-                    paused = !paused;
+                paused = !paused;
 
-                    if (paused)
-                    {
-                        PauseGame();
-                    }
-                    else
-                    {
-                        ResumeGame();
-                    }
+                if (paused)
+                {
+                    PauseGame();
                 }
                 else
                 {
-                    uiControls.EditTiles();
+                    ResumeGame();
                 }
             }
+            else
+            {
+                print("Yote");
+                uiControls.EditTiles();
+            }
+            
         }
     }
 
@@ -67,6 +71,7 @@ public class MenuControls : MonoBehaviour
         titleMenu.SetActive(false);
         inGameUI.SetActive(true);
         inGame = true;
+        paused = false;
     }
 
     public void PauseGame()
@@ -74,6 +79,7 @@ public class MenuControls : MonoBehaviour
         StopGame();
         titleMenu.SetActive(false);
         pauseMenu.SetActive(true);
+        paused = true;
     }
 
     public void TitleMenu()
@@ -81,21 +87,42 @@ public class MenuControls : MonoBehaviour
         StopGame();
         titleMenu.SetActive(true);
         pauseMenu.SetActive(false);
+        savesMenu.SetActive(false);
+        paused = false;
+    }
+
+    public void Generate()
+    {
+        NoiseGen.Generate();
+        fgTileManager.tilemap.ClearAllTiles();
+        fgTileManager.Generate();
+        bgTileManager.Generate();
     }
 
     public void New()
     {
-        NoiseGen.Generate();
+        if (!generateAlready)
+        {
+            Generate();
+        }
+        generateAlready = false;
         ResumeGame();
     }
 
-    public void Load(string fileName)
+    public void Load()
     {
-        string data = dataManager.LoadData(fileName);
-        //NoiseGen.Generate(dataManager.getSeed(fileName))
-        dataManager.FillTilemapFromData(bgTilemap, data, false);
-        dataManager.FillTilemapFromData(fgTilemap, data, true);
 
         ResumeGame();
+
+        titleMenu.SetActive(false);
+        savesMenu.SetActive(true);
+    }
+
+    public void LoadSave(string fileName)
+    {
+        string data = dataManager.LoadData(fileName);
+        NoiseGen.Generate(dataManager.GetSeed(fileName));
+        dataManager.FillTilemapFromData(bgTileManager.tilemap, data, false);
+        dataManager.FillTilemapFromData(fgTileManager.tilemap, data, true);
     }
 }

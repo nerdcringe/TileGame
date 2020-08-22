@@ -82,6 +82,7 @@
     <Compile Include="Assets\FishHealth.cs" />
     <Compile Include="Assets\RecipeDefs.cs" />
     <Compile Include="Assets\BotMovement.cs" />
+    <Compile Include="Assets\SavesManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

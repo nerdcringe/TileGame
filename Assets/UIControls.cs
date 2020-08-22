@@ -11,12 +11,6 @@ public class UIControls : MonoBehaviour
 
     public bool craftingOpened = false;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void EditTiles()
     {
         craftingOpened = false;
@@ -50,6 +44,7 @@ public class UIControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            craftingOpened = false;
             EditTiles();
         }
     }

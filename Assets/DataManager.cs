@@ -3,11 +3,12 @@ using System.Text;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Tilemaps;
+using System;
 
 public class DataManager : MonoBehaviour
 {
     const string fileExtension = ".txt";
-    static string saveLocation;
+    public static string saveLocation;
 
     public TileDefs tileDefs;
 
@@ -24,16 +25,6 @@ public class DataManager : MonoBehaviour
         {
             Directory.CreateDirectory(saveLocation);
         }
-
-        foreach (string file in Directory.GetFiles(saveLocation))
-        {
-            // Instantiate(saveFab)
-        }
-    }
-
-    public void detectFiles()
-    {
-        
     }
 
     // Update is called once per frame
@@ -67,6 +58,13 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    // First section of file is seed.
+    public int GetSeed(string saveData)
+    {
+        string seed = saveData.Split(';')[0];
+        return int.Parse(seed); // Turn string to int and return.
+    }
+
     public string CreateDataFromTilemap(Tilemap tilemap)
     {
         int w = NoiseGen.width;
@@ -86,7 +84,7 @@ public class DataManager : MonoBehaviour
                 }
                 sb.Append(id + " "); // Add space between tile id's in same row.
             }
-            sb.Append(","); // Add comma between rows.
+            sb.Append("," + Environment.NewLine); // Add comma between rows.
         }
         sb.Append(";"); // Add semicolon after tilemap to separate from other sections.
 
