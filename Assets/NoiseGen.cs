@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NoiseGen
 {
-    public const int width = 127;
-    public const int height = 127;
-    const float noiseScale = 15; // Smaller number is larger features, larger number is smaller features.
+    public const int width = 511;
+    public const int height = 511;
+    const float noiseScale = 8; // Smaller number is larger features, larger number is smaller features.
 
     public static float seed = Random.Range(0, 99999.99f);
     public static float[,] noisemap;

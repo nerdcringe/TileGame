@@ -18,6 +18,21 @@ public class FishSpawning : MonoBehaviour
 
     float spawnTimer = 0;
 
+
+    public void SpawnFish(Vector3 spawnPos)
+    {
+        GameObject fish = Instantiate(fishFab, gameObject.transform);
+        fish.transform.position = spawnPos;
+        FishMovement ai = fish.GetComponent<FishMovement>();
+        ai.player = player;
+        ai.FGTilemap = tilemap;
+        ai.tileDefs = tileDefs;
+
+        FishHealth health = fish.GetComponent<FishHealth>();
+        health.tilemap = tilemap;
+        health.tileDefs = tileDefs;
+    }
+
     // Start is called before the first frame update
     void Update()
     {
@@ -32,20 +47,10 @@ public class FishSpawning : MonoBehaviour
                 posAroundPlayer *= Random.Range(minSpawnRadius, maxSpawnRadius);
 
                 spawnPos = new Vector3Int(Mathf.RoundToInt(player.position.x), Mathf.RoundToInt(player.position.y), 0) + posAroundPlayer;
-                
+                SpawnFish(spawnPos);
+
                 if (tileDefs.waterTile.Equals(tilemap.GetTile(spawnPos)))
                 {
-                    GameObject fish = Instantiate(fishFab, gameObject.transform);
-                    fish.transform.position = spawnPos;
-                    FishMovement ai = fish.GetComponent<FishMovement>();
-                    ai.player = player;
-                    ai.FGTilemap = tilemap;
-                    ai.tileDefs = tileDefs;
-
-                    FishHealth health = fish.GetComponent<FishHealth>();
-                    health.tilemap = tilemap;
-                    health.tileDefs = tileDefs;
-
                     spawnTimer = 0;
                     break;
                 }

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    // Sorter for items by ID.
-    public static Comparer<TileType> itemSorter;
-
     public TileDefs tileDefs;
-    public SortedList<TileType, int> items;
+
+    // Sorts items by ID in inventory.
+    public static Comparer<TileType> itemSorter = Comparer<TileType>.Create((tile1, tile2) => tile1.id.CompareTo(tile2.id));
+    public SortedList<TileType, int> items = new SortedList<TileType, int>(itemSorter); // Item type and amounts
 
     public TileType currentTileType;
     public int currentTileIndex = 0;
@@ -76,16 +76,6 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        itemSorter = Comparer<TileType>.Create((tile1, tile2) => tile1.id.CompareTo(tile2.id));
-        items = new SortedList<TileType, int>(itemSorter);
-        items.Add(tileDefs.campfire, 1);
-        items.Add(tileDefs.rawMeat, 8);
     }
 
     // Update is called once per frame

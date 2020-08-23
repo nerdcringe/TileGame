@@ -24,10 +24,22 @@ public class BotSpawning : MonoBehaviour
 
     float currentSpeed = 3.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SpawnBot(Vector3 spawnPos)
     {
+        GameObject bot = Instantiate(botFab, transform);
+        bot.transform.position = spawnPos;
+
+        BotMovement ai = bot.GetComponent<BotMovement>();
+        ai.speed = currentSpeed;
+        ai.player = player;
+        ai.FGTilemap = FGTilemap;
+        ai.tileDefs = tileDefs;
+
+        BotHealth health = bot.GetComponent<BotHealth>();
+        health.tilemap = FGTilemap;
+        health.tileDefs = tileDefs;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -67,18 +79,7 @@ public class BotSpawning : MonoBehaviour
                 // Only spawn on tile if tile is empty
                 if (FGTilemap.GetTile(spawnPos) == null && !inLampRange && !onWoodFlooring)
                 {
-                    GameObject bot = Instantiate(botFab, transform);
-                    bot.transform.position = new Vector3(spawnPos.x, spawnPos.y);
-
-                    BotMovement ai = bot.GetComponent<BotMovement>();
-                    ai.speed = currentSpeed;
-                    ai.player = player;
-                    ai.FGTilemap = FGTilemap;
-                    ai.tileDefs = tileDefs;
-
-                    BotHealth health = bot.GetComponent<BotHealth>();
-                    health.tilemap = FGTilemap;
-                    health.tileDefs = tileDefs;
+                    SpawnBot(spawnPos);
 
                     spawnTimer = 0;
                     currentSpawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);

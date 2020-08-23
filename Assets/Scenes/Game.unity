@@ -487,7 +487,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 893012802}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.66801757
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1519,7 +1519,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1927873387}
         m_TargetAssemblyTypeName: MenuControls, Assembly-CSharp
-        m_MethodName: Load
+        m_MethodName: SavesMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4934,8 +4934,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18079403e872cd74b8ed6ca2637d4221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastSaveName: 
   tileDefs: {fileID: 2120869011}
+  bgTileManager: {fileID: 1287991230}
+  fgTileManager: {fileID: 1231576593}
+  player: {fileID: 951022518}
+  health: {fileID: 951022522}
+  inv: {fileID: 1658892144}
+  cookingManager: {fileID: 1231576596}
+  cannonManager: {fileID: 1231576595}
+  botSpawning: {fileID: 1895781973}
+  fishSpawning: {fileID: 1895781975}
+  lastSaveName: 
 --- !u!1 &1931028437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5133,8 +5142,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -550, y: -280.00003}
-  m_SizeDelta: {x: 444.92432, y: 97.40146}
+  m_AnchoredPosition: {x: -550, y: -280}
+  m_SizeDelta: {x: 445, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1945623708
 MonoBehaviour:

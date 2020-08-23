@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using System.IO;
@@ -9,9 +9,19 @@ public class DataManager : MonoBehaviour
 {
     public const string fileExtension = ".txt";
     public static string saveLocation;
-    public string lastSaveName;
 
     public TileDefs tileDefs;
+    public BGTileManager bgTileManager;
+    public FGTileManager fgTileManager;
+    public Transform player;
+    public PlayerHealth health;
+    public Inventory inv;
+    public CookingManager cookingManager;
+    public CannonManager cannonManager;
+    public BotSpawning botSpawning;
+    public FishSpawning fishSpawning;
+
+    public string lastSaveName;
 
     // Start is called before the first frame update
     public void Start()
@@ -29,8 +39,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    public void SaveData(string name, string saveData, bool overwrite)
+    public void WriteFile(string name, string saveData, bool overwrite)
     {
         string fileName = name;
 
@@ -48,7 +57,7 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(saveLocation + fileName + fileExtension, saveData);
     }
 
-    public string LoadData(string fileName)
+    public string ReadFile(string fileName)
     {
         string file = saveLocation + fileName + fileExtension;
         if (File.Exists(file))
@@ -61,19 +70,12 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // First section of file is seed.
-    public float GetSeed(string saveData)
-    {
-        string seed = saveData.Split(';')[0];
-        return float.Parse(seed); // Turn string to int and return.
-    }
-
     public string CreateDataFromTilemap(Tilemap tilemap)
     {
         int w = NoiseGen.width;
         int h = NoiseGen.height;
 
-        StringBuilder sb = new StringBuilder("", w*h);
+        StringBuilder sb = new StringBuilder("", w * h);
 
         for (int y = 0; y < h; y++)
         {
@@ -90,29 +92,18 @@ public class DataManager : MonoBehaviour
                 if (x < w - 1) // Add space between tile id's in same row.
                 {
                     sb.Append(" ");
-                } else
-                {
-                    print(x);
                 }
             }
-            sb.Append("," + Environment.NewLine); // Add comma between rows.
+            sb.Append(","); // Add comma between rows.
         }
-        sb.Append(";"); // Add semicolon after tilemap to separate from other sections.
 
         return sb.ToString();
     }
 
     // Set tilemap to save data from file.
-    public void FillTilemapFromData(Tilemap tilemap, string saveData, bool inFG)
+    public void FillTilemapFromData(Tilemap tilemap, string tilemapString)
     {
-        // Get the first or second section separated by semicolon, depending on whether tilemap is in bg or fg.
-        int dataSectionIndex = 1;
-        if (inFG)
-        {
-            dataSectionIndex = 2;
-        }
-        string tilemapString = saveData.Split(';')[dataSectionIndex];
-
+        tilemap.ClearAllTiles();
         // Separate data string into rows
         string[] rowStrings = tilemapString.Split(',');
 
@@ -143,13 +134,105 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void SaveWorldToFile(string name, float seed, Tilemap bgTilemap, Tilemap fgTilemap, bool overwrite)
+
+    public void SaveToFile(string name, float seed, Tilemap bgTilemap, Tilemap fgTilemap, bool overwrite)
     {
-        string dataString = "" + seed + ";" + Environment.NewLine;
-        dataString += CreateDataFromTilemap(bgTilemap);
-        dataString += CreateDataFromTilemap(fgTilemap);
-        SaveData(name, dataString, overwrite);
+        string dataString;
+        SaveData saveData = new SaveData();
+
+        saveData.playerX = player.position.x;
+        saveData.playerY = player.position.y;
+        saveData.health = health.health;
+
+        foreach (TileType tileType in inv.items.Keys)
+        {
+            saveData.inventoryItemIDs.Add(tileType.id);
+            saveData.inventoryItemAmounts.Add(inv.items[tileType]);
+        }
+
+        // Keep track of meat positions and cooking durations.
+        foreach (Vector3Int pos in cookingManager.meats.Keys)
+        {
+            saveData.meatXs.Add(pos.x);
+            saveData.meatYs.Add(pos.y);
+            saveData.meatCookingDurations.Add(cookingManager.meats[pos]);
+        }
+        foreach (Vector3Int pos in cannonManager.cannons.Keys)
+        {
+            saveData.cannonXs.Add(pos.x);
+            saveData.cannonYs.Add(pos.y);
+            saveData.cannonLoadTimes.Add(cannonManager.cannons[pos]);
+        }
+
+        foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            saveData.botXs.Add(bot.transform.position.x);
+            saveData.botYs.Add(bot.transform.position.y);
+        }
+        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("Fish"))
+        {
+            saveData.fishXs.Add(fish.transform.position.x);
+            saveData.fishYs.Add(fish.transform.position.y);
+        }
+
+        saveData.seed = NoiseGen.seed;
+        saveData.bgTilemapData = CreateDataFromTilemap(bgTilemap);
+        saveData.fgTilemapData = CreateDataFromTilemap(fgTilemap);
+
+        dataString = JsonUtility.ToJson(saveData);
+
+        WriteFile(name, dataString, overwrite);
     }
+
+    public void LoadSaveData(string jsonString)
+    {
+        SaveData saveData = JsonUtility.FromJson<SaveData>(jsonString);
+
+        player.position = new Vector3(saveData.playerX, saveData.playerY, 0);
+        health.health = saveData.health;
+
+        inv.items.Clear();
+        for(int i = 0; i < saveData.inventoryItemIDs.Count; i++)
+        {
+            TileType tileType = tileDefs.GetTileFromID(saveData.inventoryItemIDs[i]);
+            inv.AddItem(tileType, saveData.inventoryItemAmounts[i]);
+        }
+
+        cookingManager.meats.Clear();
+        for (int i = 0; i < saveData.meatXs.Count; i++)
+        {
+            cookingManager.meats.Add(new Vector3Int(saveData.meatXs[i], saveData.meatYs[i], 0), saveData.meatCookingDurations[i]);
+        }
+        cannonManager.cannons.Clear();
+        for (int i = 0; i < saveData.cannonXs.Count; i++)
+        {
+            cannonManager.cannons.Add(new Vector3Int(saveData.cannonXs[i], saveData.cannonYs[i], 0), saveData.cannonLoadTimes[i]);
+        }
+
+
+        foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            GameObject.Destroy(bot);
+        }
+        for (int i = 0; i < saveData.botXs.Count; i++)
+        {
+            botSpawning.SpawnBot(new Vector3(saveData.botXs[i], saveData.botYs[i], 0));
+        }
+
+        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("Fish"))
+        {
+            GameObject.Destroy(fish);
+        }
+        for (int i = 0; i < saveData.fishXs.Count; i++)
+        {
+            fishSpawning.SpawnFish(new Vector3(saveData.fishXs[i], saveData.fishYs[i], 0));
+        }
+
+        NoiseGen.seed = saveData.seed;
+        FillTilemapFromData(bgTileManager.tilemap, saveData.bgTilemapData);
+        FillTilemapFromData(fgTileManager.tilemap, saveData.fgTilemapData);
+    }
+
 
     public void DeleteFile(string name)
     {
@@ -159,5 +242,35 @@ public class DataManager : MonoBehaviour
             print(name + " deleted. (Legit)");
             File.Delete(file);
         }
+    }
+
+
+    [Serializable]
+    public class SaveData
+    {
+        public float playerX;
+        public float playerY;
+        public int health;
+        public List<int> inventoryItemIDs = new List<int>();
+        public List<int> inventoryItemAmounts = new List<int>();
+
+        public List<int> meatXs = new List<int>();
+        public List<int> meatYs = new List<int>();
+        public List<float> meatCookingDurations = new List<float>();
+
+        public List<int> cannonXs = new List<int>();
+        public List<int> cannonYs = new List<int>();
+        public List<float> cannonLoadTimes = new List<float>();
+
+        public List<float> botXs = new List<float>();
+        public List<float> botYs = new List<float>();
+
+        public List<float> fishXs = new List<float>();
+        public List<float> fishYs = new List<float>();
+
+        public float seed;
+        public string bgTilemapData;
+        public string fgTilemapData;
+
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class MenuControls : MonoBehaviour
@@ -48,7 +47,7 @@ public class MenuControls : MonoBehaviour
 
                     if (paused)
                     {
-                        PauseGame();
+                        PauseMenu();
                     }
                     else
                     {
@@ -60,6 +59,12 @@ public class MenuControls : MonoBehaviour
                     uiControls.EditTiles();
                 }
             }
+
+            if (savesMenu.activeSelf)
+            {
+                TitleMenu();
+            }
+
         }
     }
 
@@ -82,7 +87,7 @@ public class MenuControls : MonoBehaviour
         paused = false;
     }
 
-    public void PauseGame()
+    public void PauseMenu()
     {
         StopGame();
         titleMenu.SetActive(false);
@@ -97,6 +102,11 @@ public class MenuControls : MonoBehaviour
         pauseMenu.SetActive(false);
         savesMenu.SetActive(false);
         paused = false;
+    }
+    public void SavesMenu()
+    {
+        titleMenu.SetActive(false);
+        savesMenu.SetActive(true);
     }
 
     public void Generate()
@@ -119,22 +129,13 @@ public class MenuControls : MonoBehaviour
         saveNameInput.text = "";
     }
 
-    public void Load()
-    {
-        titleMenu.SetActive(false);
-        savesMenu.SetActive(true);
-    }
 
     public void SelectSave()
     {
         loadedFileName = savesManager.dropDown.captionText.text;
-        print(loadedFileName);
-        string data = dataManager.LoadData(loadedFileName);
-        NoiseGen.seed = dataManager.GetSeed(data);
-        NoiseGen.Generate();
+        string dataString = dataManager.ReadFile(loadedFileName);
+        dataManager.LoadSaveData(dataString);
 
-        dataManager.FillTilemapFromData(bgTileManager.tilemap, data, false);
-        dataManager.FillTilemapFromData(fgTileManager.tilemap, data, true);
         saveNameInput.text = loadedFileName;
     }
 
@@ -148,7 +149,7 @@ public class MenuControls : MonoBehaviour
             name = "save";
             overwrite = false;
         }
-        dataManager.SaveWorldToFile(name, NoiseGen.seed, bgTileManager.tilemap, fgTileManager.tilemap, overwrite);
+        dataManager.SaveToFile(name, NoiseGen.seed, bgTileManager.tilemap, fgTileManager.tilemap, overwrite);
         saveNameInput.text = dataManager.lastSaveName;
     }
 }
