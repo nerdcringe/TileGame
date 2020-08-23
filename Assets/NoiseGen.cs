@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class NoiseGen
 {
-    public const int width = 511;
-    public const int height = 511;
-    const float noiseScale = 15; // Smaller number is larger features, larger number is smaller features
+    public const int width = 127;
+    public const int height = 127;
+    const float noiseScale = 15; // Smaller number is larger features, larger number is smaller features.
 
+    public static float seed = Random.Range(0, 99999.99f);
     public static float[,] noisemap;
 
     public static Vector3 ClampComponentsInside(Vector3 v)
@@ -25,7 +26,7 @@ public class NoiseGen
         return Mathf.PerlinNoise((x / (float)width) * scale + seed, (y / (float)height) * scale + seed);
     }
 
-    public static void Generate(float seed)
+    public static void Generate()
     {
         noisemap = new float[width, height];
         Debug.Log("Seed: " + seed);
@@ -41,10 +42,5 @@ public class NoiseGen
                 noisemap[x, y] = noiseVal;
             }
         }
-    }
-
-    public static void Generate()
-    {
-        Generate(Random.Range(0, 99999.99f));
     }
 }

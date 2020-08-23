@@ -67,10 +67,6 @@ public class TileDefs : MonoBehaviour
     public Tile cookedMeatTile;
     public TileType cookedMeat;
 
-    public Tile shellTile;
-    public TileType shell;
-
-
     public TileType GetTileFromName(string name)
     {
         foreach (TileType tileType in tileTypes) {
@@ -99,51 +95,49 @@ public class TileDefs : MonoBehaviour
     void Start()
     {
         tileTypes = new List<TileType>();
-        grass = new TileType(0, "grass", grassTile, 0.15f, 0.65f);
+        grass = new TileType(1, "grass", grassTile, 0.15f, 0.65f);
         tileTypes.Add(grass);
-        rock = new TileType(1, "rock", rockTile, 0.38f, 2);
+        rock = new TileType(2, "rock", rockTile, 0.38f, 2);
         tileTypes.Add(rock);
-        log = new TileType(2, "log", logTile, 0.28f, 1.5f);
+        log = new TileType(3, "log", logTile, 0.28f, 1.5f);
         tileTypes.Add(log);
-        leaf = new TileType(3, "leaf", leafTile, 0, 0.3f);
+        leaf = new TileType(4, "leaf", leafTile, 0, 0.3f);
         tileTypes.Add(leaf);
-        water = new TileType(4, "water", waterTile, 0.1f, 1000);
+        water = new TileType(5, "water", waterTile, 0.1f, 1000);
         tileTypes.Add(water);
-        acorn = new TileType(5, "acorn", acornTile, 0.05f, 0.5f);
+        acorn = new TileType(6, "acorn", acornTile, 0.05f, 0.5f);
         tileTypes.Add(acorn);
-        steel = new TileType(6, "steel", steelTile, 0.75f, 1000);
+        steel = new TileType(7, "steel", steelTile, 0.75f, 1000);
         tileTypes.Add(steel);
-        sand = new TileType(7, "sand", sandTile, 0.1f, 0.8f);
+        sand = new TileType(8, "sand", sandTile, 0.1f, 0.8f);
         tileTypes.Add(sand);
-        darkRock = new TileType(8, "dark rock", darkRockTile, 0.3f, 2);
+        darkRock = new TileType(9, "dark rock", darkRockTile, 0.3f, 2);
         tileTypes.Add(darkRock);
-        magma = new TileType(9, "magma", magmaTile, 0.6f, 1000);
+        magma = new TileType(10, "magma", magmaTile, 0.6f, 1000);
         tileTypes.Add(magma);
-        door = new TileType(10, "door", doorTile, 0.75f, 1000);
+        door = new TileType(11, "door", doorTile, 0.75f, 1000);
         tileTypes.Add(door);
-        openDoor = new TileType(11, "open door", openDoorTile, 0.75f, 1000);
+        openDoor = new TileType(12, "open door", openDoorTile, 0.75f, 1000);
         tileTypes.Add(openDoor);
 
-        woodFlooring = new TileType(12, "wood flooring", woodFlooringTile, 0.31f, 1000);
+        woodFlooring = new TileType(13, "wood flooring", woodFlooringTile, 0.31f, 1000);
         tileTypes.Add(woodFlooring);
-        lamp = new TileType(13, "lamp", lampTile, 0.3f, 4);
+        lamp = new TileType(14, "lamp", lampTile, 0.3f, 4);
         tileTypes.Add(lamp);
 
-        circutBoard = new TileType(14, "circut board", circutBoardTile, 0.5f, 1.75f);
+        circutBoard = new TileType(15, "circut board", circutBoardTile, 0.5f, 1.75f);
         tileTypes.Add(circutBoard);
-        computer = new TileType(15, "computer", computerTile, 0.6f, 5);
+        computer = new TileType(16, "computer", computerTile, 0.6f, 5);
         tileTypes.Add(computer);
-        cannon = new TileType(16, "cannon", cannonTile, 0.38f, 2);
+        cannon = new TileType(17, "cannon", cannonTile, 0.38f, 2);
         tileTypes.Add(cannon);
 
-        campfire = new TileType(17, "campfire", campfireTile, 0.28f, 1.5f);
+        campfire = new TileType(18, "campfire", campfireTile, 0.28f, 1.5f);
         tileTypes.Add(campfire);
-        rawMeat = new TileType(18, "raw meat", rawMeatTile, 0.20f, 1f);
+        rawMeat = new TileType(19, "raw meat", rawMeatTile, 0.20f, 1f);
         tileTypes.Add(rawMeat);
-        cookedMeat = new TileType(19, "cooked meat", cookedMeatTile, 0.25f, 1.25f);
+        cookedMeat = new TileType(20, "cooked meat", cookedMeatTile, 0.25f, 1.25f);
         tileTypes.Add(cookedMeat);
-        shell = new TileType(20, "shell", shellTile, 0.3f, 1.65f);
-        tileTypes.Add(shell);
     }
 
     // Update is called once per frame
