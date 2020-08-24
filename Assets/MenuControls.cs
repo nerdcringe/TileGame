@@ -16,6 +16,7 @@ public class MenuControls : MonoBehaviour
 
     public GameObject titleMenu;
     public GameObject savesMenu;
+    public GameObject tileEditor;
     public GameObject inGameUI;
     public GameObject pauseMenu;
 
@@ -72,6 +73,7 @@ public class MenuControls : MonoBehaviour
     {
         Time.timeScale = 0;
         inGameUI.SetActive(false);
+        tileEditor.SetActive(false);
         inGame = false;
     }
 
@@ -83,6 +85,7 @@ public class MenuControls : MonoBehaviour
         titleMenu.SetActive(false);
         savesMenu.SetActive(false);
         inGameUI.SetActive(true);
+        tileEditor.SetActive(true);
         inGame = true;
         paused = false;
     }
@@ -103,6 +106,7 @@ public class MenuControls : MonoBehaviour
         savesMenu.SetActive(false);
         paused = false;
     }
+
     public void SavesMenu()
     {
         titleMenu.SetActive(false);
@@ -119,24 +123,27 @@ public class MenuControls : MonoBehaviour
 
     public void New()
     {
+        dataManager.ClearLoadedGame();
         if (!generateAlready)
         {
             NoiseGen.seed = Random.Range(0, 99999.99f);
             Generate();
         }
         generateAlready = false;
-        ResumeGame();
         saveNameInput.text = "";
+        ResumeGame();
     }
-
 
     public void SelectSave()
     {
         loadedFileName = savesManager.dropDown.captionText.text;
         string dataString = dataManager.ReadFile(loadedFileName);
+        dataManager.ClearLoadedGame();
         dataManager.LoadSaveData(dataString);
 
+        generateAlready = false;
         saveNameInput.text = loadedFileName;
+        ResumeGame();   
     }
 
     public void SaveCurrentGame()

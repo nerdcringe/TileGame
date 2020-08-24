@@ -5,10 +5,10 @@ using UnityEngine.Tilemaps;
 
 public class FishSpawning : MonoBehaviour
 {
-    const int spawnInterval = 10;
+    const int spawnInterval = 12;
     const int maxFish = 3;
 
-    const int minSpawnRadius = 16;
+    const int minSpawnRadius = 17;
     const int maxSpawnRadius = 22;
 
     public TileDefs tileDefs;
@@ -41,7 +41,6 @@ public class FishSpawning : MonoBehaviour
             Vector3Int spawnPos;
             for (int i = 0; i < 5; i++) // Attempt to spawn around player several times.
             {
-
                 float angle = Random.Range(0, Mathf.PI * 2);
                 Vector3Int posAroundPlayer = new Vector3Int(Mathf.RoundToInt(Mathf.Cos(angle)), Mathf.RoundToInt(Mathf.Sin(angle)), 0);
                 posAroundPlayer *= Random.Range(minSpawnRadius, maxSpawnRadius);

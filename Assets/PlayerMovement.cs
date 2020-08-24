@@ -51,6 +51,8 @@ public class PlayerMovement : CharacterMovement
             }
         }
 
+        roundToNearestPos = true;
+
         bool right = Input.GetKey("d");
         bool left = Input.GetKey("a");
         bool up = Input.GetKey("w");
@@ -61,18 +63,22 @@ public class PlayerMovement : CharacterMovement
         if (right)
         {
             targetPos.x = x + 1;
+            roundToNearestPos = false;
         }
         if (left)
         {
             targetPos.x = x - 1;
+                roundToNearestPos = false;
         }
         if (up)
         {
             targetPos.y = y + 1;
+            roundToNearestPos = false;
         }
         if (down)
         {
             targetPos.y = y - 1;
+            roundToNearestPos = false;
         }
 
         if (!right && !left && (up || down))

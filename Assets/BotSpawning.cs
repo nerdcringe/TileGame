@@ -7,6 +7,11 @@ using UnityEngine.Tilemaps;
 
 public class BotSpawning : MonoBehaviour
 {
+    const int spawnRadius = 16;
+    const float maxBots = 3;
+    const float spawnIntervalMin = 18;
+    const float spawnIntervalMax = 30;
+
     public GameObject botFab;
     public Tilemap FGTilemap;
     public Tilemap BGTilemap;
@@ -14,12 +19,7 @@ public class BotSpawning : MonoBehaviour
 
     public Transform player;
 
-    const int spawnRadius = 16;
-    const float spawnIntervalMin = 16;
-    const float spawnIntervalMax = 22;
-    const float maxBots = 3;
-
-    float currentSpawnInterval = 30;
+    public float currentSpawnInterval = 34;
     float spawnTimer = 0;
 
     float currentSpeed = 3.5f;
@@ -44,7 +44,9 @@ public class BotSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool botsMaxedOut = GameObject.FindGameObjectsWithTag("Enemy").Length >= maxBots;
+        int numBots = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        bool botsMaxedOut = numBots >= maxBots;
+
         if (spawnTimer > currentSpawnInterval && !botsMaxedOut)
         {
             Vector3Int spawnPos;
@@ -83,6 +85,7 @@ public class BotSpawning : MonoBehaviour
 
                     spawnTimer = 0;
                     currentSpawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
+
                     currentSpeed *= 1.02f; // Speed up bots to make them progressively harder.
                     currentSpeed = Mathf.Min(currentSpeed, 4.75f);
 

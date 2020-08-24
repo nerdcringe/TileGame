@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
     public TileDefs tileDefs;
     public BGTileManager bgTileManager;
     public FGTileManager fgTileManager;
-    public Transform player;
+    public PlayerMovement player;
     public PlayerHealth health;
     public Inventory inv;
     public CookingManager cookingManager;
@@ -140,8 +140,8 @@ public class DataManager : MonoBehaviour
         string dataString;
         SaveData saveData = new SaveData();
 
-        saveData.playerX = player.position.x;
-        saveData.playerY = player.position.y;
+        saveData.playerX = player.transform.position.x;
+        saveData.playerY = player.transform.position.y;
         saveData.health = health.health;
 
         foreach (TileType tileType in inv.items.Keys)
@@ -155,6 +155,7 @@ public class DataManager : MonoBehaviour
         {
             saveData.meatXs.Add(pos.x);
             saveData.meatYs.Add(pos.y);
+            print(cookingManager.meats[pos]);
             saveData.meatCookingDurations.Add(cookingManager.meats[pos]);
         }
         foreach (Vector3Int pos in cannonManager.cannons.Keys)
@@ -184,44 +185,56 @@ public class DataManager : MonoBehaviour
         WriteFile(name, dataString, overwrite);
     }
 
+
+    public void ClearLoadedGame()
+    {
+        player.transform.position = new Vector3(NoiseGen.width/2, NoiseGen.height/2);
+        player.rb.velocity = Vector3.zero;
+        player.targetPos = new Vector3Int(Mathf.RoundToInt(player.transform.position.x), Mathf.RoundToInt(player.transform.position.y), 0);
+        health.health = 4;
+        inv.items.Clear();
+        inv.currentTileIndex = 0;
+        inv.currentTileType = null;
+        cookingManager.meats.Clear();
+        cannonManager.cannons.Clear();
+
+        foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            GameObject.Destroy(bot);
+        }
+
+        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("Fish"))
+        {
+            GameObject.Destroy(fish);
+        }
+
+    }
+
     public void LoadSaveData(string jsonString)
     {
         SaveData saveData = JsonUtility.FromJson<SaveData>(jsonString);
 
-        player.position = new Vector3(saveData.playerX, saveData.playerY, 0);
+        player.transform.position = new Vector3(saveData.playerX, saveData.playerY, 0);
         health.health = saveData.health;
 
-        inv.items.Clear();
         for(int i = 0; i < saveData.inventoryItemIDs.Count; i++)
         {
             TileType tileType = tileDefs.GetTileFromID(saveData.inventoryItemIDs[i]);
             inv.AddItem(tileType, saveData.inventoryItemAmounts[i]);
         }
 
-        cookingManager.meats.Clear();
         for (int i = 0; i < saveData.meatXs.Count; i++)
         {
             cookingManager.meats.Add(new Vector3Int(saveData.meatXs[i], saveData.meatYs[i], 0), saveData.meatCookingDurations[i]);
         }
-        cannonManager.cannons.Clear();
         for (int i = 0; i < saveData.cannonXs.Count; i++)
         {
             cannonManager.cannons.Add(new Vector3Int(saveData.cannonXs[i], saveData.cannonYs[i], 0), saveData.cannonLoadTimes[i]);
         }
 
-
-        foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            GameObject.Destroy(bot);
-        }
         for (int i = 0; i < saveData.botXs.Count; i++)
         {
             botSpawning.SpawnBot(new Vector3(saveData.botXs[i], saveData.botYs[i], 0));
-        }
-
-        foreach (GameObject fish in GameObject.FindGameObjectsWithTag("Fish"))
-        {
-            GameObject.Destroy(fish);
         }
         for (int i = 0; i < saveData.fishXs.Count; i++)
         {

@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public const float invincibilityInterval = 4;
+    public const float invincibilityInterval = 3;
     const int maxHealth = 4;
     public int health = maxHealth;
 

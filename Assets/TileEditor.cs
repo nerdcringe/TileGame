@@ -136,7 +136,6 @@ public class TileEditor : MonoBehaviour
             {
                 tile = tileDefs.woodFlooringTile;
             }
-
             TileType tileType = tileDefs.GetTileFromName(tile.name);
             gatherTime += Time.deltaTime;
 

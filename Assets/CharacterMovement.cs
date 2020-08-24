@@ -11,7 +11,8 @@ public class CharacterMovement : MonoBehaviour
 
     public Tilemap FGTilemap;
     public TileDefs tileDefs;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
+    protected bool roundToNearestPos = true;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -39,7 +40,14 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 dir = new Vector2(targetPos.x, targetPos.y) - rb.position;
+        Vector2 dir;
+        dir = new Vector2(targetPos.x, targetPos.y) - rb.position;
+
+        if (!roundToNearestPos)
+        {
+            dir.Normalize();
+            dir *= speed;
+        }
         dir /= Time.fixedDeltaTime;
 
         float currentSpeed = speed;
@@ -55,7 +63,7 @@ public class CharacterMovement : MonoBehaviour
                 currentSpeed *= 0.35f;
             }
         }
-        dir = Vector2.ClampMagnitude(dir, speed);
+        dir = Vector2.ClampMagnitude(dir, currentSpeed);
         rb.velocity = dir;
     }
 }

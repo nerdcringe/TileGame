@@ -63,7 +63,6 @@
     <Compile Include="Assets\CookingManager.cs" />
     <Compile Include="Assets\BGTileManager.cs" />
     <Compile Include="Assets\CameraMotion.cs" />
-    <Compile Include="Assets\JsonSaveData.cs" />
     <Compile Include="Assets\Inventory.cs" />
     <Compile Include="Assets\SavesManager.cs" />
     <Compile Include="Assets\UIControls.cs" />
