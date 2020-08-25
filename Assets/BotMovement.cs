@@ -8,6 +8,7 @@ public class BotMovement : CharacterMovement
     const int despawnDistance = 40;
 
     public Transform player;
+    public AudioSource audioSource;
 
     public Vector3Int tilePos;
     public float breakTime = 0;
@@ -46,9 +47,11 @@ public class BotMovement : CharacterMovement
         {
             breakTime += Time.deltaTime;
 
-            if (breakTime > tileDefs.GetTileFromName(tile.name).breakTime)
+            TileType tileType = tileDefs.GetTileFromName(tile.name);
+            if (breakTime > tileType.breakTime)
             {
                 FGTilemap.SetTile(tilePos, null);
+                tileType.PlaySound(audioSource);
                 breakTime = 0;
             }
         }

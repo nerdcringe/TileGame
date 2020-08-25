@@ -6,7 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMovement : CharacterMovement
 {
-    List<Vector3Int> openedDoorPos;
+    public AudioSource audioSource;
+    List<Vector3Int> openedDoorPos; 
 
     // Start is called before the first frame update
     protected override void Start()
@@ -32,21 +33,29 @@ public class PlayerMovement : CharacterMovement
         }
         if (tileDefs.doorTile.Equals(FGTilemap.GetTile(pos)) && !openedDoorPos.Equals(pos))
         {
-            openedDoorPos.Add(targetPos);
+            openedDoorPos.Add(pos);
         }
 
         for (int i = 0; i < openedDoorPos.Count; i++)
         {
             Vector3Int doorPos = openedDoorPos[i];
+            TileBase tile = FGTilemap.GetTile(doorPos);
 
             if (doorPos.Equals(targetPos) || doorPos.Equals(pos)) {
                 // Open door in door list if player position or target position is door position.
-                FGTilemap.SetTile(doorPos, tileDefs.openDoorTile);
+                if (tileDefs.doorTile.Equals(tile))
+                {
+                    FGTilemap.SetTile(doorPos, tileDefs.openDoorTile);
+                    tileDefs.openDoor.PlaySound(audioSource);
+                }
             }
             else
-            {
-                // Close door in list if player is not on or targeting door position.
-                FGTilemap.SetTile(doorPos, tileDefs.doorTile);
+            {  // Close door in list if player is not on or targeting door position.
+                if (tileDefs.openDoorTile.Equals(tile))
+                {   
+                    FGTilemap.SetTile(doorPos, tileDefs.doorTile);
+                    tileDefs.door.PlaySound(audioSource);
+                }
                 openedDoorPos.Remove(doorPos);
             }
         }
@@ -63,22 +72,22 @@ public class PlayerMovement : CharacterMovement
         if (right)
         {
             targetPos.x = x + 1;
-            roundToNearestPos = false;
+            //roundToNearestPos = false;
         }
         if (left)
         {
             targetPos.x = x - 1;
-                roundToNearestPos = false;
+                //roundToNearestPos = false;
         }
         if (up)
         {
             targetPos.y = y + 1;
-            roundToNearestPos = false;
+            //roundToNearestPos = false;
         }
         if (down)
         {
             targetPos.y = y - 1;
-            roundToNearestPos = false;
+            //roundToNearestPos = false;
         }
 
         if (!right && !left && (up || down))

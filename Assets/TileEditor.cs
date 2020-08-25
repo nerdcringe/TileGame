@@ -29,6 +29,8 @@ public class TileEditor : MonoBehaviour
     public Sprite gatherStage3;
     public Sprite gatherStage4;
 
+    public AudioSource audioSource;
+
     public float gatherTime = 0;
 
     TileType holdItem;
@@ -63,7 +65,7 @@ public class TileEditor : MonoBehaviour
 
         if (inventory.HasItem(selectedTileType, 1) && !(tilePos.x == Mathf.RoundToInt(player.position.x) && tilePos.y == Mathf.RoundToInt(player.position.y)))
         {
-            bool canWaterTree = tilemap.GetTile(tilePos) == tileDefs.acornTile && selectedTileType == tileDefs.water;
+            bool canWaterTree = tileDefs.acornTile.Equals(tilemap.GetTile(tilePos)) && tileDefs.water.Equals(selectedTileType);
 
             if (Input.GetMouseButton(1) && (tile == null || canWaterTree) && holdItem == selectedTileType && (!tileDefs.woodFlooring.Equals(selectedTileType) || canPlaceWood))
             {
@@ -75,10 +77,12 @@ public class TileEditor : MonoBehaviour
                 else if (canPlaceWood && tileDefs.woodFlooring.Equals(selectedTileType))
                 {
                     BGTileManager.tilemap.SetTile(tilePos, tileDefs.woodFlooringTile);
+                    tileDefs.woodFlooring.PlaySound(audioSource);
                 }
                 else 
                 {
                     tilemap.SetTile(tilePos, selectedTileType.tile);
+                    selectedTileType.PlaySound(audioSource);
                 }
 
                 // Add cannon manager for tile position if cannon is placed
@@ -161,9 +165,11 @@ public class TileEditor : MonoBehaviour
                 highlightSR.sprite = gatherStage4;
             }
 
+            // If gather time is over the tiletype's gather time, then break the tile.
             if (gatherTime > tileDefs.GetTileFromName(tile.name).gatherTime)
             {
                 tilemap.SetTile(tilePos, null);
+                tileType.PlaySound(audioSource);
 
                 if (canBreakWoodFlooring)
                 {

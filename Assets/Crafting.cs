@@ -195,6 +195,7 @@ public class Crafting : MonoBehaviour
                         inv.RemoveItem(gridTileTypes[i], 1);
                     }
                 }
+                outputIcon.enabled = false;
                 Clear();
             }
         }

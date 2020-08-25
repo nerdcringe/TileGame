@@ -46,11 +46,11 @@ public class FGTileManager : MonoBehaviour
                     // Cave Generation
                     if (noiseVal > 0.62)
                     {
-                        if (noiseVal > 0.75 && Random.Range(0, 175) < 1)
+                        if (noiseVal > 0.72 && Random.Range(0, 140) < 1)
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.steelTile);
                         }
-                        else if (noiseVal > 0.66 && Random.Range(0, 16) < 1)
+                        else if (noiseVal > 0.66 && Random.Range(0, 18) < 1)
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.magmaTile);
                         }

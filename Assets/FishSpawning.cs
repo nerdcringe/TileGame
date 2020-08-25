@@ -46,10 +46,10 @@ public class FishSpawning : MonoBehaviour
                 posAroundPlayer *= Random.Range(minSpawnRadius, maxSpawnRadius);
 
                 spawnPos = new Vector3Int(Mathf.RoundToInt(player.position.x), Mathf.RoundToInt(player.position.y), 0) + posAroundPlayer;
-                SpawnFish(spawnPos);
 
                 if (tileDefs.waterTile.Equals(tilemap.GetTile(spawnPos)))
                 {
+                    SpawnFish(spawnPos);
                     spawnTimer = 0;
                     break;
                 }

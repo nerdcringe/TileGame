@@ -51,6 +51,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        items.Add(tileDefs.door, 4);
+    }
+
+
     public void RemoveItem(TileType tileType, int amount)
     {
         if (tileType != null)
