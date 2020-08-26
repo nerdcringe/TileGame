@@ -28,7 +28,7 @@ public class DataManager : MonoBehaviour
     {
         saveLocation = Application.persistentDataPath + "/Saves/";
         Init();
-        print(saveLocation);
+        //print(saveLocation);
     }
 
     public void Init()

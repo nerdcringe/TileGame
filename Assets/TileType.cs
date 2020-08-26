@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class TileType
 {
-    const float volume = 1.0f;
+    public const float volume = 1.0f;
 
     public readonly int id;
     public readonly string name;
@@ -15,7 +15,7 @@ public class TileType
     public readonly float breakTime; // Time for enemies to break tile.
     
     public readonly Sprite sprite;
-    readonly AudioClip sound; // Sound that occurs when tile is gathered or broked by robot.
+    public readonly AudioClip sound; // Sound that occurs when tile is gathered or broked by robot.
 
     public TileType(int ID, string Name, Tile Tile, float GatherTime, float BreakTime, AudioClip Sound)
     {
@@ -37,13 +37,4 @@ public class TileType
         }
         sound = Sound;
     }
-
-    public void PlaySound(AudioSource audioSource)
-    {
-        if (sound != null)
-        {
-            audioSource.PlayOneShot(sound, volume);
-        }
-    }
-
 }

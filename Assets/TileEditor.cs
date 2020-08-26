@@ -29,7 +29,7 @@ public class TileEditor : MonoBehaviour
     public Sprite gatherStage3;
     public Sprite gatherStage4;
 
-    public AudioSource audioSource;
+    public AudioManager audioManager;
 
     public float gatherTime = 0;
 
@@ -69,21 +69,21 @@ public class TileEditor : MonoBehaviour
 
             if (Input.GetMouseButton(1) && (tile == null || canWaterTree) && holdItem == selectedTileType && (!tileDefs.woodFlooring.Equals(selectedTileType) || canPlaceWood))
             {
-
                 if (canWaterTree)
                 {
                     FGTileManager.Tree(tilePos.x, tilePos.y);
                 }
                 else if (canPlaceWood && tileDefs.woodFlooring.Equals(selectedTileType))
                 {
+                    audioManager.PlaySound(selectedTileType.sound, tilePos);
                     BGTileManager.tilemap.SetTile(tilePos, tileDefs.woodFlooringTile);
-                    tileDefs.woodFlooring.PlaySound(audioSource);
                 }
-                else 
+                else
                 {
+                    audioManager.PlaySound(selectedTileType.sound, tilePos);
                     tilemap.SetTile(tilePos, selectedTileType.tile);
-                    selectedTileType.PlaySound(audioSource);
                 }
+
 
                 // Add cannon manager for tile position if cannon is placed
                 if (tileDefs.cannon.Equals(selectedTileType))
@@ -168,8 +168,8 @@ public class TileEditor : MonoBehaviour
             // If gather time is over the tiletype's gather time, then break the tile.
             if (gatherTime > tileDefs.GetTileFromName(tile.name).gatherTime)
             {
+                audioManager.PlaySound(tileType.sound, tilePos);
                 tilemap.SetTile(tilePos, null);
-                tileType.PlaySound(audioSource);
 
                 if (canBreakWoodFlooring)
                 {
@@ -177,7 +177,7 @@ public class TileEditor : MonoBehaviour
                     BGTileManager.tilemap.SetTile(tilePos, BGTileManager.GetTileAtValue(NoiseGen.noisemap[tilePos.x, tilePos.y]));
                 }
 
-                if (tileType == tileDefs.leaf)
+                if (tileDefs.leaf.Equals(tileType))
                 {
                     if (Random.Range(0, 8) == 0)
                     {
@@ -209,6 +209,5 @@ public class TileEditor : MonoBehaviour
         }
 
         lastTilePos = tilePos;
-        
     }
 }

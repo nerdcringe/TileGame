@@ -6,11 +6,13 @@ using UnityEngine.Tilemaps;
 public class BotHealth : MonoBehaviour
 {
     public CharacterMovement mov;
+    public AudioManager audioManager;
     public TileDefs tileDefs;
     public Tilemap tilemap;
 
     public void Cease()
     {
+        audioManager.PlaySound(audioManager.botHit, transform.position);
         TileBase dropTile = tileDefs.steelTile;
         if (Random.Range(0, 12) < 1)
         {
@@ -18,12 +20,6 @@ public class BotHealth : MonoBehaviour
         }
         tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(mov.transform.position.x), Mathf.RoundToInt(mov.transform.position.y), 0), dropTile);
         Destroy(gameObject);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
     }
 
     // Update is called once per frame

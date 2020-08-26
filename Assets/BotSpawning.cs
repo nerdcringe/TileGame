@@ -18,7 +18,7 @@ public class BotSpawning : MonoBehaviour
     public TileDefs tileDefs;
 
     public Transform player;
-    public AudioSource audioSource;
+    public AudioManager audioManager;
 
     public float currentSpawnInterval = 34;
     float spawnTimer = 0;
@@ -35,7 +35,7 @@ public class BotSpawning : MonoBehaviour
         ai.player = player;
         ai.FGTilemap = FGTilemap;
         ai.tileDefs = tileDefs;
-        ai.audioSource = audioSource;
+        ai.audioManager = audioManager;
 
         BotHealth health = bot.GetComponent<BotHealth>();
         health.tilemap = FGTilemap;

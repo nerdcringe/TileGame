@@ -487,7 +487,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 893012802}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.66801757
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   gatherStage2: {fileID: 21300000, guid: 48a0f22699f2fcf4993b1685d85f1c95, type: 3}
   gatherStage3: {fileID: 21300000, guid: ae87f3a3d6528d74492b8378b5b4f52a, type: 3}
   gatherStage4: {fileID: 21300000, guid: 01c2ae3723dba8d4c9ed7bbe78ff9a45, type: 3}
-  audioSource: {fileID: 1056597922}
+  audioManager: {fileID: 1056597924}
   gatherTime: 0
 --- !u!4 &411456197
 Transform:
@@ -1105,7 +1105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411456195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 960.00006, y: 540, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 430625513}
@@ -1197,7 +1197,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430625510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10.647903}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 411456197}
@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -952.5, y: -543.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!850595691 &480586098
@@ -2436,7 +2436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951022516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.002, y: 0.031, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   FGTilemap: {fileID: 1231576591}
   tileDefs: {fileID: 2120869011}
   rb: {fileID: 951022520}
-  audioSource: {fileID: 1056597922}
+  audioManager: {fileID: 1056597924}
 --- !u!50 &951022520
 Rigidbody2D:
   serializedVersion: 4
@@ -2650,7 +2650,7 @@ Canvas:
   m_GameObject: {fileID: 990937235}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1780426864}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -2742,6 +2742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1056597923}
   - component: {fileID: 1056597922}
+  - component: {fileID: 1056597924}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -2760,7 +2761,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2853,12 +2854,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056597921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 853.2707, y: 629.8684, z: -6435.351}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1056597924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056597921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632dc0c4a8b38a14c9cd40ed2afe1e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1056597922}
+  player: {fileID: 951022518}
+  doorOpened: {fileID: 8300000, guid: 152cd568d54561340af1f5fac96911eb, type: 3}
+  doorClosed: {fileID: 8300000, guid: 7a01b912680cad74f84ae5e37c26048b, type: 3}
+  botHit: {fileID: 8300000, guid: f0a1ba90d399ffe42a047d84e3c3cdd0, type: 3}
 --- !u!1 &1070893342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,7 +4898,7 @@ MonoBehaviour:
   BGTilemap: {fileID: 1287991229}
   tileDefs: {fileID: 2120869011}
   player: {fileID: 951022518}
-  audioSource: {fileID: 1056597922}
+  audioManager: {fileID: 1056597924}
   currentSpawnInterval: 34
 --- !u!4 &1895781974
 Transform:
@@ -5694,9 +5712,8 @@ MonoBehaviour:
   campfireTile: {fileID: 11400000, guid: 4c1e9a38e944c834b9e6055b2af91ee8, type: 2}
   rawMeatTile: {fileID: 11400000, guid: 73619cd6ec09194468d8d9def25b2d87, type: 2}
   cookedMeatTile: {fileID: 11400000, guid: e4986fb060c77c94390a5511f0016f2d, type: 2}
+  rockSound: {fileID: 8300000, guid: f462e1b4c6092774ea5ac38b524ba46c, type: 3}
   woodSound: {fileID: 8300000, guid: 3823040392156ca4b83befdec3049d4b, type: 3}
-  closedDoorSound: {fileID: 8300000, guid: 7a01b912680cad74f84ae5e37c26048b, type: 3}
-  openDoorSound: {fileID: 8300000, guid: 152cd568d54561340af1f5fac96911eb, type: 3}
   steelSound: {fileID: 8300000, guid: 976ab46fa02a8884e819a788b0544f10, type: 3}
 --- !u!4 &2120869012
 Transform:
@@ -5706,7 +5723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120869010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.069922864, y: -0.3164608, z: -0.38009107}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

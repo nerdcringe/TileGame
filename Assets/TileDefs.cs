@@ -68,9 +68,8 @@ public class TileDefs : MonoBehaviour
     public TileType cookedMeat;
 
 
+    public AudioClip rockSound;
     public AudioClip woodSound;
-    public AudioClip closedDoorSound;
-    public AudioClip openDoorSound;
     public AudioClip steelSound;
 
 
@@ -104,7 +103,7 @@ public class TileDefs : MonoBehaviour
         tileTypes = new List<TileType>();
         grass = new TileType(1, "grass", grassTile, 0.15f, 0.65f, null);
         tileTypes.Add(grass);
-        rock = new TileType(2, "rock", rockTile, 0.38f, 2, null);
+        rock = new TileType(2, "rock", rockTile, 0.38f, 2, rockSound);
         tileTypes.Add(rock);
         log = new TileType(3, "log", logTile, 0.28f, 1.5f, woodSound);
         tileTypes.Add(log);
@@ -118,14 +117,14 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(steel);
         sand = new TileType(8, "sand", sandTile, 0.1f, 0.8f, null);
         tileTypes.Add(sand);
-        darkRock = new TileType(9, "dark rock", darkRockTile, 0.3f, 2, null);
+        darkRock = new TileType(9, "dark rock", darkRockTile, 0.3f, 2, rockSound);
         tileTypes.Add(darkRock);
         magma = new TileType(10, "magma", magmaTile, 0.6f, 1000, null);
         tileTypes.Add(magma);
 
-        door = new TileType(11, "door", doorTile, 0.75f, 1000, closedDoorSound);
+        door = new TileType(11, "door", doorTile, 0.75f, 1000, steelSound);
         tileTypes.Add(door);
-        openDoor = new TileType(12, "open door", openDoorTile, 0.75f, 1000, openDoorSound);
+        openDoor = new TileType(12, "open door", openDoorTile, 0.75f, 1000, steelSound);
         tileTypes.Add(openDoor);
 
         woodFlooring = new TileType(13, "wood flooring", woodFlooringTile, 0.31f, 1000, woodSound);

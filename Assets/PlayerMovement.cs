@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMovement : CharacterMovement
 {
-    public AudioSource audioSource;
+    public AudioManager audioManager;
     List<Vector3Int> openedDoorPos; 
 
     // Start is called before the first frame update
@@ -46,7 +46,7 @@ public class PlayerMovement : CharacterMovement
                 if (tileDefs.doorTile.Equals(tile))
                 {
                     FGTilemap.SetTile(doorPos, tileDefs.openDoorTile);
-                    tileDefs.openDoor.PlaySound(audioSource);
+                    audioManager.PlaySound(audioManager.doorOpened, doorPos);
                 }
             }
             else
@@ -54,7 +54,7 @@ public class PlayerMovement : CharacterMovement
                 if (tileDefs.openDoorTile.Equals(tile))
                 {   
                     FGTilemap.SetTile(doorPos, tileDefs.doorTile);
-                    tileDefs.door.PlaySound(audioSource);
+                    audioManager.PlaySound(audioManager.doorClosed, doorPos);
                 }
                 openedDoorPos.Remove(doorPos);
             }
