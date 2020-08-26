@@ -10,7 +10,6 @@ public class FishMovement : CharacterMovement
     SpriteRenderer sr;
 
     float angle = 0;
-    Vector2 offset;
 
     protected override void Start()
     {
@@ -20,6 +19,8 @@ public class FishMovement : CharacterMovement
 
     protected override void Update()
     {
+
+        base.Update();
         bool targetingWater = tileDefs.waterTile.Equals(FGTilemap.GetTile(targetPos));
 
         // Swim quickly in water and slow out of water
@@ -33,12 +34,10 @@ public class FishMovement : CharacterMovement
         }
         else
         {
-            speed = 0.35f;
+            speed = 0.25f;
         }
 
-        base.Update();
-
-        if (Random.Range(0, 100) < 1)
+        if (Random.Range(0, 120) < 1)
         {
             angle = Random.Range(0.0f, 360.0f);
         }
@@ -48,29 +47,30 @@ public class FishMovement : CharacterMovement
             Destroy(gameObject);
         }
 
-        offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-        offset.Normalize();
-        targetPos = new Vector3Int(Mathf.RoundToInt(transform.position.x + offset.x), Mathf.RoundToInt(transform.position.y + offset.y), 0);
+        vel = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        vel.Normalize();
+        vel *= speed;
+        vel = Vector2.ClampMagnitude(vel, speed);
 
-        if (offset.x > 0 && offset.y < 0)
+        if (vel.x > 0 && vel.y < 0)
         {
             sr.flipX = false;
             sr.flipY = false;
             transform.eulerAngles = new Vector3Int(0, 0, 0);
         }
-        if (offset.x < 0 && offset.y < 0)
+        if (vel.x < 0 && vel.y < 0)
         {
             sr.flipX = true;
             sr.flipY = false;
             transform.eulerAngles = new Vector3Int(0, 0, 0);
         }
-        if (offset.x > 0 && offset.y > 0)
+        if (vel.x > 0 && vel.y > 0)
         {
             sr.flipX = false;
             sr.flipY = false;
             transform.eulerAngles = new Vector3Int(0, 0, 90);
         }
-        if (offset.x < 0 && offset.y > 0)
+        if (vel.x < 0 && vel.y > 0)
         {
             sr.flipX = false;
             sr.flipY = true;

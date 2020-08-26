@@ -1167,9 +1167,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -771381667
-  m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingLayerID: 85988191
+  m_SortingLayer: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 2cdd8c76f430da242861961542f144ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2455,10 +2455,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  vel: {x: 0, y: 0}
   targetPos: {x: 0, y: 0, z: 0}
   FGTilemap: {fileID: 1231576591}
   tileDefs: {fileID: 2120869011}
   rb: {fileID: 951022520}
+  roundToTargetPos: 0
   audioManager: {fileID: 1056597924}
 --- !u!50 &951022520
 Rigidbody2D:
@@ -2650,7 +2652,7 @@ Canvas:
   m_GameObject: {fileID: 990937235}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1780426864}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -5567,7 +5569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5bafb94f882fe4ba4213c5c90dd26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuOpened: 0
   inv: {fileID: 1658892144}
   tileDefs: {fileID: 2120869011}
   recipeDefs: {fileID: 2120869013}
@@ -5714,7 +5715,9 @@ MonoBehaviour:
   cookedMeatTile: {fileID: 11400000, guid: e4986fb060c77c94390a5511f0016f2d, type: 2}
   rockSound: {fileID: 8300000, guid: f462e1b4c6092774ea5ac38b524ba46c, type: 3}
   woodSound: {fileID: 8300000, guid: 3823040392156ca4b83befdec3049d4b, type: 3}
+  waterSound: {fileID: 8300000, guid: 0754a52b5b7a02c46a76fdef8ca83bab, type: 3}
   steelSound: {fileID: 8300000, guid: 976ab46fa02a8884e819a788b0544f10, type: 3}
+  magmaSound: {fileID: 8300000, guid: 59ba8b8a339177643a4d9de80f49bc94, type: 3}
 --- !u!4 &2120869012
 Transform:
   m_ObjectHideFlags: 0

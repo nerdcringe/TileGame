@@ -51,9 +51,8 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
-        items.Add(tileDefs.door, 4);
     }
 
 

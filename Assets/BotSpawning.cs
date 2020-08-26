@@ -40,6 +40,7 @@ public class BotSpawning : MonoBehaviour
         BotHealth health = bot.GetComponent<BotHealth>();
         health.tilemap = FGTilemap;
         health.tileDefs = tileDefs;
+        health.audioManager = audioManager;
     }
 
 

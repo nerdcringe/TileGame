@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class PlayerMovement : CharacterMovement
 {
     public AudioManager audioManager;
-    List<Vector3Int> openedDoorPos; 
+    List<Vector3Int> openedDoorPos;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -60,43 +60,51 @@ public class PlayerMovement : CharacterMovement
             }
         }
 
-        roundToNearestPos = true;
+        // If velocity is less than certain amount, snap targetPos to rounded position.
+        if (Mathf.Abs(rb.velocity.x) < 0.005)
+        {
+            targetPos.x = Mathf.RoundToInt(transform.position.x);
+        }
+        if (Mathf.Abs(rb.velocity.y) < 0.005)
+        {
+            targetPos.y = Mathf.RoundToInt(transform.position.y);
+        }
+        base.Update();
 
         bool right = Input.GetKey("d");
         bool left = Input.GetKey("a");
         bool up = Input.GetKey("w");
         bool down = Input.GetKey("s");
 
-        base.Update();
-
+        roundToTargetPos = true;
         if (right)
         {
-            targetPos.x = x + 1;
-            //roundToNearestPos = false;
+            vel.x = 1;
+            roundToTargetPos = false;
         }
         if (left)
         {
-            targetPos.x = x - 1;
-                //roundToNearestPos = false;
+            vel.x = -1;
+            roundToTargetPos = false;
         }
         if (up)
         {
-            targetPos.y = y + 1;
-            //roundToNearestPos = false;
+            vel.y = 1;
+            roundToTargetPos = false;
         }
         if (down)
         {
-            targetPos.y = y - 1;
-            //roundToNearestPos = false;
+            vel.y = -1;
+            roundToTargetPos = false;
         }
 
         if (!right && !left && (up || down))
         {
-            targetPos.x = x;
+            vel.x = 0;
         }
         if (!up && !down && (right || left))
         {
-            targetPos.y = y;
+            vel.y = 0;
         }
     }
 }

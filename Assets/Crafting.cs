@@ -10,8 +10,6 @@ public class Crafting : MonoBehaviour
     public const int height = 2;
     public const int size = width * height;
 
-    public bool menuOpened = false;
-
     public Inventory inv;
     public TileDefs tileDefs;
     public RecipeDefs recipeDefs;
@@ -52,7 +50,7 @@ public class Crafting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int gridPos = grid.WorldToCell(mousePos);

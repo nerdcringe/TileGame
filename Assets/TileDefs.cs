@@ -70,7 +70,9 @@ public class TileDefs : MonoBehaviour
 
     public AudioClip rockSound;
     public AudioClip woodSound;
+    public AudioClip waterSound;
     public AudioClip steelSound;
+    public AudioClip magmaSound;
 
 
     public TileType GetTileFromName(string name)
@@ -109,9 +111,9 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(log);
         leaf = new TileType(4, "leaf", leafTile, 0, 0.3f, null);
         tileTypes.Add(leaf);
-        water = new TileType(5, "water", waterTile, 0.1f, 1000, null);
+        water = new TileType(5, "water", waterTile, 0.12f, 1000, waterSound);
         tileTypes.Add(water);
-        acorn = new TileType(6, "acorn", acornTile, 0.05f, 0.5f, null);
+        acorn = new TileType(6, "acorn", acornTile, 0.05f, 0, null);
         tileTypes.Add(acorn);
         steel = new TileType(7, "steel", steelTile, 0.75f, 1000, steelSound);
         tileTypes.Add(steel);
@@ -119,7 +121,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(sand);
         darkRock = new TileType(9, "dark rock", darkRockTile, 0.3f, 2, rockSound);
         tileTypes.Add(darkRock);
-        magma = new TileType(10, "magma", magmaTile, 0.6f, 1000, null);
+        magma = new TileType(10, "magma", magmaTile, 0.6f, 1000, magmaSound);
         tileTypes.Add(magma);
 
         door = new TileType(11, "door", doorTile, 0.75f, 1000, steelSound);
@@ -136,7 +138,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(circutBoard);
         computer = new TileType(16, "computer", computerTile, 0.6f, 5, steelSound);
         tileTypes.Add(computer);
-        cannon = new TileType(17, "cannon", cannonTile, 0.38f, 2, null);
+        cannon = new TileType(17, "cannon", cannonTile, 0.38f, 2, rockSound);
         tileTypes.Add(cannon);
 
         campfire = new TileType(18, "campfire", campfireTile, 0.28f, 1.5f, woodSound);
