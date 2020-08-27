@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public CharacterMovement mov;
     public Sprite hurtSprite;
     public Sprite deadSprite;
+    public AudioManager audioManager;
 
     public TileDefs tileDefs;
     public Tilemap tilemap;
@@ -89,6 +90,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (tileDefs.cookedMeatTile.Equals(tilemap.GetTile(mov.targetPos)))
                 {
+                    audioManager.PlaySound(audioManager.eat, mov.targetPos);
                     health += 1;
                     tilemap.SetTile(mov.targetPos, null);
                 }

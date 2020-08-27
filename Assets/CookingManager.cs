@@ -7,15 +7,11 @@ public class CookingManager : MonoBehaviour
 {
     const float cookTime = 25;
 
+    public AudioManager audioManager;
     public Tilemap tilemap;
     public TileDefs tileDefs;
 
     public Dictionary<Vector3Int, float> meats = new Dictionary<Vector3Int, float>(); // Dictionary that maps meat position to current cooking time.
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -30,6 +26,7 @@ public class CookingManager : MonoBehaviour
             {
                 meats.Remove(pos);
                 tilemap.SetTile(pos, tileDefs.cookedMeatTile);
+                audioManager.PlaySound(audioManager.cook, pos);
             }
 
             // Remove meat positions from list that are missing or not next to campfire.

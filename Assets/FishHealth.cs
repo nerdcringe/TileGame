@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class FishHealth : MonoBehaviour
 {
+    public AudioManager audioManager;
     const int outOfWaterMaxTime = 8;
 
     public TileDefs tileDefs;
@@ -14,6 +15,7 @@ public class FishHealth : MonoBehaviour
 
     public void Cease()
     {
+        audioManager.PlaySound(audioManager.fish, transform.position);
         tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0), tileDefs.rawMeatTile);
         Destroy(gameObject);
     }

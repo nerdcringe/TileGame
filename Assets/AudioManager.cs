@@ -14,6 +14,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip doorOpened;
     public AudioClip doorClosed;
     public AudioClip botHit;
+    public AudioClip eat;
+    public AudioClip fish;
+    public AudioClip cook;
 
 
     public void PlaySound(AudioClip sound, Vector3 soundPos)

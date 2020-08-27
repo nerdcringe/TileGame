@@ -13,6 +13,8 @@ public class FishSpawning : MonoBehaviour
 
     public TileDefs tileDefs;
     public Tilemap tilemap;
+    public AudioManager audioManager;
+
     public GameObject fishFab;
     public Transform player;
 
@@ -31,6 +33,7 @@ public class FishSpawning : MonoBehaviour
         FishHealth health = fish.GetComponent<FishHealth>();
         health.tilemap = tilemap;
         health.tileDefs = tileDefs;
+        health.audioManager = audioManager;
     }
 
     // Start is called before the first frame update
