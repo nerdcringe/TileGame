@@ -104,6 +104,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
         health = Mathf.Clamp(health, 0, maxHealth);
+        if (health >= 4)
+        {
+            sr.sprite = defaultSprite;
+        }
     }
 
     void OnCollisionStay2D(Collision2D collision)

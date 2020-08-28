@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMovement : CharacterMovement
 {
+    public const float initialSpeed = 5f;
+
     public AudioManager audioManager;
     List<Vector3Int> openedDoorPos;
 
@@ -13,7 +15,7 @@ public class PlayerMovement : CharacterMovement
     protected override void Start()
     {
         transform.position = new Vector2(NoiseGen.width/2, NoiseGen.height/2);
-        speed = 5f;
+        speed = initialSpeed;
         openedDoorPos = new List<Vector3Int>();
         base.Start();
     }

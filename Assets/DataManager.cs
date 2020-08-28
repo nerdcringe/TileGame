@@ -4,15 +4,19 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Tilemaps;
 using System;
+using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
     public const string fileExtension = ".txt";
     public static string saveLocation;
+    public const string settingsFileName = "settings";
+    public static string settingsLocation;
 
     public TileDefs tileDefs;
     public BGTileManager bgTileManager;
     public FGTileManager fgTileManager;
+
     public PlayerMovement player;
     public PlayerHealth health;
     public Inventory inv;
@@ -21,13 +25,18 @@ public class DataManager : MonoBehaviour
     public BotSpawning botSpawning;
     public FishSpawning fishSpawning;
 
+    public AudioManager audioManager;
+    public Slider volumeSlider;
+
     public string lastSaveName;
 
     // Start is called before the first frame update
     public void Start()
     {
         saveLocation = Application.persistentDataPath + "/Saves/";
+        settingsLocation = Application.persistentDataPath + "/";
         Init();
+        LoadSettings();
         //print(saveLocation);
     }
 
@@ -39,7 +48,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void WriteFile(string name, string saveData, bool overwrite)
+    public void WriteFile(string location, string name, string saveData, bool overwrite)
     {
         string fileName = name;
 
@@ -47,14 +56,14 @@ public class DataManager : MonoBehaviour
         if (!overwrite)
         {
             int saveNum = 1;
-            while (File.Exists(saveLocation + fileName + fileExtension))
+            while (File.Exists(location + fileName + fileExtension))
             {
                 saveNum++;
                 fileName = name + "_" + saveNum;
             }
         }
         lastSaveName = fileName;
-        File.WriteAllText(saveLocation + fileName + fileExtension, saveData);
+        File.WriteAllText(location + fileName + fileExtension, saveData);
     }
 
     public string ReadFile(string fileName)
@@ -69,6 +78,17 @@ public class DataManager : MonoBehaviour
             return null;
         }
     }
+
+    public void DeleteFile(string name)
+    {
+        string file = saveLocation + name + fileExtension;
+        if (File.Exists(file))
+        {
+            print(name + " deleted. (Legit)");
+            File.Delete(file);
+        }
+    }
+
 
     public string CreateDataFromTilemap(Tilemap tilemap)
     {
@@ -180,34 +200,41 @@ public class DataManager : MonoBehaviour
         saveData.fgTilemapData = CreateDataFromTilemap(fgTilemap);
 
         dataString = JsonUtility.ToJson(saveData);
-
-        WriteFile(name, dataString, overwrite);
+        Init();
+        WriteFile(saveLocation, name, dataString, overwrite);
     }
 
 
-    public void ResetLoadedGame()
+    public void Respawn()
     {
-        player.transform.position = new Vector3(NoiseGen.width/2, NoiseGen.height/2);
+        player.transform.position = new Vector3(NoiseGen.width / 2, NoiseGen.height / 2);
+        player.speed = PlayerMovement.initialSpeed;
         player.rb.velocity = Vector3.zero;
         player.targetPos = new Vector3Int(Mathf.RoundToInt(player.transform.position.x), Mathf.RoundToInt(player.transform.position.y), 0);
         health.health = 4;
+
         inv.items.Clear();
         inv.currentTileIndex = 0;
         inv.currentTileType = null;
-        cookingManager.meats.Clear();
-        cannonManager.cannons.Clear();
 
         botSpawning.currentSpeed = BotSpawning.initialSpeed;
         foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             GameObject.Destroy(bot);
         }
-
         foreach (GameObject fish in GameObject.FindGameObjectsWithTag("Fish"))
         {
             GameObject.Destroy(fish);
         }
     }
+
+    public void ResetLoadedGame()
+    {
+        Respawn();
+        cookingManager.meats.Clear();
+        cannonManager.cannons.Clear();
+    }
+
 
     public void LoadSaveData(string jsonString)
     {
@@ -246,13 +273,24 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void DeleteFile(string name)
+    public void SaveSettings()
     {
-        string file = saveLocation + name + fileExtension;
-        if (File.Exists(file))
+        SettingsData settingsData = new SettingsData();
+        settingsData.volumeAmount = audioManager.volume;
+
+        string settingsString = JsonUtility.ToJson(settingsData);
+        WriteFile(settingsLocation, settingsFileName, settingsString, true);
+    }
+
+    public void LoadSettings()
+    {
+        string settingsString = ReadFile(settingsLocation + settingsFileName + fileExtension);
+
+        if (settingsString != null)
         {
-            print(name + " deleted. (Legit)");
-            File.Delete(file);
+            SettingsData settingsData = JsonUtility.FromJson<SettingsData>(settingsString);
+            volumeSlider.value = settingsData.volumeAmount;
+            audioManager.SetVolume();
         }
     }
 
@@ -284,5 +322,11 @@ public class DataManager : MonoBehaviour
         public string bgTilemapData;
         public string fgTilemapData;
 
+    }
+
+    [Serializable]
+    public class SettingsData
+    {
+        public float volumeAmount;
     }
 }

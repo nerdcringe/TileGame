@@ -1,23 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    const float volScale = 1.75f;
     const int volRadius = 20;
     const int panRadius = 16;
-    const float volMultiplier = 1f;
 
     public AudioSource audioSource;
     public Transform player;
+
+    public Slider volumeSlider;
+    public Text volumeText;
 
     public AudioClip doorOpened;
     public AudioClip doorClosed;
     public AudioClip botHit;
     public AudioClip eat;
     public AudioClip fish;
-    public AudioClip cook;
+    public AudioClip meatCooked;
 
+    public float volume;
+
+    private void Start()
+    {
+        SetVolume();
+    }
 
     public void PlaySound(AudioClip sound, Vector3 soundPos)
     {
@@ -31,8 +41,15 @@ public class AudioManager : MonoBehaviour
 
             if (vol > 0)
             {
-                audioSource.PlayOneShot(sound, vol * volMultiplier);
+                audioSource.PlayOneShot(sound, vol);
             }
         }
+    }
+
+    public void SetVolume()
+    {
+        volumeText.text = "VOLUME: " + volumeSlider.value;
+        volume = volumeSlider.value;
+        AudioListener.volume = (volume / 100.0f) * volScale;
     }
 }

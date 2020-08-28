@@ -26,7 +26,7 @@ public class CookingManager : MonoBehaviour
             {
                 meats.Remove(pos);
                 tilemap.SetTile(pos, tileDefs.cookedMeatTile);
-                audioManager.PlaySound(audioManager.cook, pos);
+                audioManager.PlaySound(audioManager.meatCooked, pos);
             }
 
             // Remove meat positions from list that are missing or not next to campfire.

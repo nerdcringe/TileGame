@@ -9,6 +9,12 @@ public class UIControls : MonoBehaviour
     public GameObject craftingMenu;
     public Crafting crafting;
 
+    public GameObject gameOverScreen;
+    public PlayerHealth player;
+    public DataManager dataManager;
+
+
+    bool gameOver = false;
     public bool craftingOpened = false;
 
     public void EditTiles()
@@ -16,6 +22,7 @@ public class UIControls : MonoBehaviour
         craftingOpened = false;
         craftingMenu.SetActive(false);
         tileEditor.SetActive(true);
+        gameOverScreen.SetActive(false);
     }
     
     public void Craft()
@@ -23,29 +30,47 @@ public class UIControls : MonoBehaviour
         craftingOpened = true;
         crafting.Clear();
         craftingMenu.SetActive(true);
-
         tileEditor.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        EditTiles();
+        dataManager.Respawn();
+        gameOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("e"))
+        if (!gameOver)
         {
-            craftingOpened = !craftingOpened;
-            if (craftingOpened)
+            if (Input.GetKeyDown("e"))
             {
-                Craft();
+                craftingOpened = !craftingOpened;
+                if (craftingOpened)
+                {
+                    Craft();
+                }
+                else
+                {
+                    EditTiles();
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
+                craftingOpened = false;
                 EditTiles();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        if (player.health <= 0 && !gameOver)
         {
             craftingOpened = false;
-            EditTiles();
+            craftingMenu.SetActive(false);
+            tileEditor.SetActive(false);
+            gameOverScreen.SetActive(true);
+            gameOver = true;
         }
     }
 }

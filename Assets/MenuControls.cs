@@ -13,12 +13,15 @@ public class MenuControls : MonoBehaviour
     public FGTileManager fgTileManager;
 
     public InputField saveNameInput;
+    public GameObject resumeLastButton;
 
     public GameObject titleMenu;
     public GameObject savesMenu;
     public GameObject tileEditor;
     public GameObject inGameUI;
     public GameObject pauseMenu;
+    public GameObject settingsMenu;
+    public GameObject gameOverScreen;
 
     public string loadedFileName;
     public bool inGame = false;
@@ -30,6 +33,7 @@ public class MenuControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resumeLastButton.SetActive(false);
         TitleMenu();
         Generate();
         generateAlready = true;
@@ -52,7 +56,7 @@ public class MenuControls : MonoBehaviour
                     }
                     else
                     {
-                        ResumeGame();
+                        PlayGame();
                     }
                 }
                 else
@@ -65,7 +69,11 @@ public class MenuControls : MonoBehaviour
             {
                 TitleMenu();
             }
-
+            if (settingsMenu.activeSelf)
+            {
+                dataManager.SaveSettings();
+                TitleMenu();
+            }
         }
     }
 
@@ -77,7 +85,7 @@ public class MenuControls : MonoBehaviour
         inGame = false;
     }
 
-    public void ResumeGame()
+    public void PlayGame()
     {
         Time.timeScale = 1;
         uiControls.EditTiles();
@@ -86,6 +94,12 @@ public class MenuControls : MonoBehaviour
         savesMenu.SetActive(false);
         inGameUI.SetActive(true);
         tileEditor.SetActive(true);
+
+        if (!resumeLastButton.activeSelf)
+        {
+            resumeLastButton.SetActive(true);
+        }
+
         inGame = true;
         paused = false;
     }
@@ -104,6 +118,7 @@ public class MenuControls : MonoBehaviour
         titleMenu.SetActive(true);
         pauseMenu.SetActive(false);
         savesMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         paused = false;
     }
 
@@ -112,6 +127,13 @@ public class MenuControls : MonoBehaviour
         titleMenu.SetActive(false);
         savesMenu.SetActive(true);
     }
+
+    public void SettingsMenu()
+    {
+        titleMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
 
     public void Generate()
     {
@@ -123,15 +145,15 @@ public class MenuControls : MonoBehaviour
 
     public void New()
     {
-        dataManager.ResetLoadedGame();
         if (!generateAlready)
         {
+            dataManager.ResetLoadedGame();
             NoiseGen.seed = Random.Range(0, 99999.99f);
             Generate();
         }
         generateAlready = false;
         saveNameInput.text = "";
-        ResumeGame();
+        PlayGame();
     }
 
     public void SelectSave()
@@ -143,7 +165,7 @@ public class MenuControls : MonoBehaviour
 
         generateAlready = false;
         saveNameInput.text = loadedFileName;
-        ResumeGame();   
+        PlayGame();   
     }
 
     public void SaveCurrentGame()
