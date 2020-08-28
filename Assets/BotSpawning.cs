@@ -7,6 +7,10 @@ using UnityEngine.Tilemaps;
 
 public class BotSpawning : MonoBehaviour
 {
+    // When world is loaded, bots start at initial speed and get faster with time.
+    public const float initialSpeed = 3.4f;
+    const float maxSpeed = 4.7f;
+
     const int spawnRadius = 16;
     const float maxBots = 3;
     const float spawnIntervalMin = 18;
@@ -20,10 +24,9 @@ public class BotSpawning : MonoBehaviour
     public Transform player;
     public AudioManager audioManager;
 
+    public float currentSpeed = initialSpeed;
     public float currentSpawnInterval = 34;
     float spawnTimer = 0;
-
-    float currentSpeed = 3.5f;
 
     public void SpawnBot(Vector3 spawnPos)
     {
@@ -89,8 +92,8 @@ public class BotSpawning : MonoBehaviour
                     spawnTimer = 0;
                     currentSpawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
 
-                    currentSpeed *= 1.02f; // Speed up bots to make them progressively harder.
-                    currentSpeed = Mathf.Min(currentSpeed, 4.75f);
+                    currentSpeed *= 1.015f; // Speed up bots to make them progressively harder.
+                    currentSpeed = Mathf.Min(currentSpeed, maxSpeed);
 
                     break;
                 }

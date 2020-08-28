@@ -29,16 +29,26 @@ public class SavesManager : MonoBehaviour
     void RefreshSavesList()
     {
         dropDown.ClearOptions();
-        dropDown.options.Add(new OptionData("NONE"));
+        //dropDown.options.Add(new OptionData("NONE"));
         //selectButton.interactable = false;
 
         DirectoryInfo di = new DirectoryInfo(DataManager.saveLocation);
-        FileInfo[] fi = di.GetFiles("*.txt");
+        FileInfo[] fi = di.GetFiles("*.txt");;
+
+        System.Array.Sort<FileInfo>(fi, Comparer<FileInfo>.Create((f1, f2) =>
+            System.DateTime.Compare(f2.LastWriteTime, f1.LastWriteTime)));
+
         foreach (FileInfo file in fi)
         {
             dropDown.options.Add(new OptionData(GetNameMinusExtension(file.Name)));
+            print(file.Name + file.LastWriteTime.ToString());
         }
-        dropDown.Select();
+        if (fi.Length > 0)
+        {
+            dropDown.value = 0;
+            dropDown.captionText.text = dropDown.options[0].text;
+            dropDown.Select();
+        }
     }
 
     // Start is called before the first frame update
@@ -53,9 +63,9 @@ public class SavesManager : MonoBehaviour
     // Don't allow pressing select button when selecting default none value (first) in list.
     public void DetermineButtonDisabled()
     {
-        bool selecting = dropDown.value > 0;
+        /*bool selecting = dropDown.value > 0;
         selectButton.interactable = selecting;
-        deleteButton.interactable = selecting;
+        deleteButton.interactable = selecting;*/
     }
 
     public void DeleteSelectedFile()

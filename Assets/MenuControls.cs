@@ -123,7 +123,7 @@ public class MenuControls : MonoBehaviour
 
     public void New()
     {
-        dataManager.ClearLoadedGame();
+        dataManager.ResetLoadedGame();
         if (!generateAlready)
         {
             NoiseGen.seed = Random.Range(0, 99999.99f);
@@ -138,7 +138,7 @@ public class MenuControls : MonoBehaviour
     {
         loadedFileName = savesManager.dropDown.captionText.text;
         string dataString = dataManager.ReadFile(loadedFileName);
-        dataManager.ClearLoadedGame();
+        dataManager.ResetLoadedGame();
         dataManager.LoadSaveData(dataString);
 
         generateAlready = false;

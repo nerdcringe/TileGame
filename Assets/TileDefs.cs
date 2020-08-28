@@ -73,6 +73,7 @@ public class TileDefs : MonoBehaviour
     public AudioClip waterSound;
     public AudioClip steelSound;
     public AudioClip magmaSound;
+    public AudioClip meatSound;
 
 
     public TileType GetTileFromName(string name)
@@ -113,7 +114,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(leaf);
         water = new TileType(5, "water", waterTile, 0.12f, 1000, waterSound);
         tileTypes.Add(water);
-        acorn = new TileType(6, "acorn", acornTile, 0.05f, 0, null);
+        acorn = new TileType(6, "acorn", acornTile, 0, 0.35f, null);
         tileTypes.Add(acorn);
         steel = new TileType(7, "steel", steelTile, 0.75f, 1000, steelSound);
         tileTypes.Add(steel);
@@ -141,11 +142,11 @@ public class TileDefs : MonoBehaviour
         cannon = new TileType(17, "cannon", cannonTile, 0.38f, 2, rockSound);
         tileTypes.Add(cannon);
 
-        campfire = new TileType(18, "campfire", campfireTile, 0.28f, 1.5f, woodSound);
+        campfire = new TileType(18, "campfire", campfireTile, 0.31f, 1.65f, woodSound);
         tileTypes.Add(campfire);    
-        rawMeat = new TileType(19, "raw meat", rawMeatTile, 0.20f, 1f, null);
+        rawMeat = new TileType(19, "raw meat", rawMeatTile, 0.20f, 1f, meatSound);
         tileTypes.Add(rawMeat);
-        cookedMeat = new TileType(20, "cooked meat", cookedMeatTile, 0.25f, 1.25f, null);
+        cookedMeat = new TileType(20, "cooked meat", cookedMeatTile, 0.25f, 1.25f, meatSound);
         tileTypes.Add(cookedMeat);
     }
 

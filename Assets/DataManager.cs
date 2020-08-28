@@ -155,7 +155,6 @@ public class DataManager : MonoBehaviour
         {
             saveData.meatXs.Add(pos.x);
             saveData.meatYs.Add(pos.y);
-            print(cookingManager.meats[pos]);
             saveData.meatCookingDurations.Add(cookingManager.meats[pos]);
         }
         foreach (Vector3Int pos in cannonManager.cannons.Keys)
@@ -186,7 +185,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    public void ClearLoadedGame()
+    public void ResetLoadedGame()
     {
         player.transform.position = new Vector3(NoiseGen.width/2, NoiseGen.height/2);
         player.rb.velocity = Vector3.zero;
@@ -198,6 +197,7 @@ public class DataManager : MonoBehaviour
         cookingManager.meats.Clear();
         cannonManager.cannons.Clear();
 
+        botSpawning.currentSpeed = BotSpawning.initialSpeed;
         foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             GameObject.Destroy(bot);
@@ -207,7 +207,6 @@ public class DataManager : MonoBehaviour
         {
             GameObject.Destroy(fish);
         }
-
     }
 
     public void LoadSaveData(string jsonString)

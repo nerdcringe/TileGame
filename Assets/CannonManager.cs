@@ -17,11 +17,6 @@ public class CannonManager : MonoBehaviour
     public GameObject cannonBallFab;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     GameObject GetClosestBotTo(Vector3Int pos)
     {
         GameObject closestBot = null;
