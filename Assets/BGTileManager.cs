@@ -11,11 +11,11 @@ public class BGTileManager : MonoBehaviour
     public Tile GetTileAtValue(float noiseVal)
     {
         Tile tile = tileDefs.grassTile;
-        if (noiseVal > 0.62)
+        if (noiseVal > 0.61)
         {
             tile = tileDefs.darkRockTile;
         }
-        else if (noiseVal < 0.355)
+        else if (noiseVal < 0.365)
         {
             tile = tileDefs.sandTile;
         }

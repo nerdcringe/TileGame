@@ -37,31 +37,31 @@ public class FGTileManager : MonoBehaviour
             for (int y = 0; y < NoiseGen.height; y++)
             {
                 float noiseVal = NoiseGen.noisemap[x, y];
-                if (noiseVal < 0.3)
+                if (noiseVal < 0.326)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.waterTile);
                 }
                 else
                 {
                     // Cave Generation
-                    if (noiseVal > 0.62)
+                    if (noiseVal > 0.61)
                     {
-                        if (noiseVal > 0.72 && Random.Range(0, 140) < 1)
+                        if (noiseVal > 0.72 && Random.Range(0, 135) < 1)
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.steelTile);
                         }
-                        else if (noiseVal > 0.66 && Random.Range(0, 18) < 1)
+                        else if (noiseVal > 0.66 && Random.Range(0, 20) < 1)
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.magmaTile);
                         }
-                        else if ((noiseVal > 0.62 && noiseVal < 0.635) || Random.Range(0, 3) < 1)
+                        else if (noiseVal < 0.625 || Random.Range(0, 3) < 1)
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.rockTile);
                         }
                     }
-                    else if (noiseVal > 0.365 && noiseVal < 0.57)
+                    else if (noiseVal > 0.38 && noiseVal < 0.56)
                     {
-                        if (Random.Range(0, 35) < 1)
+                        if (Random.Range(0, 33) < 1)
                         {
                             Tree(x, y);
                         }

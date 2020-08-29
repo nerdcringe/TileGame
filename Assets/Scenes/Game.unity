@@ -4107,11 +4107,11 @@ MonoBehaviour:
   m_Content: {fileID: 973563188}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 2
-  m_Elasticity: 0.1
+  m_MovementType: 1
+  m_Elasticity: 0.05
   m_Inertia: 1
-  m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 15
+  m_DecelerationRate: 0.85
+  m_ScrollSensitivity: 35
   m_Viewport: {fileID: 1295015936}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 283199409}
@@ -5750,7 +5750,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.033
+  orthographic size: 7.595
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
