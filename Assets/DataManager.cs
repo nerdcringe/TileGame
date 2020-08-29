@@ -268,6 +268,7 @@ public class DataManager : MonoBehaviour
         }
 
         NoiseGen.seed = saveData.seed;
+        NoiseGen.Generate();
         FillTilemapFromData(bgTileManager.tilemap, saveData.bgTilemapData);
         FillTilemapFromData(fgTileManager.tilemap, saveData.fgTilemapData);
     }

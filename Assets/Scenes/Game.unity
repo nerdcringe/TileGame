@@ -2903,7 +2903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &933992105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3184,8 @@ MonoBehaviour:
   FGTilemap: {fileID: 1231576591}
   tileDefs: {fileID: 2120869011}
   rb: {fileID: 951022520}
-  roundToTargetPos: 0
+  roundToTargetX: 0
+  roundToTargetY: 1
   audioManager: {fileID: 1056597924}
 --- !u!50 &951022520
 Rigidbody2D:
@@ -3612,6 +3613,7 @@ MonoBehaviour:
   eat: {fileID: 8300000, guid: 0f3f19c89bf51304da2a2a33c092522e, type: 3}
   fish: {fileID: 8300000, guid: e3f95a8eac40611428c6f776036b8c26, type: 3}
   meatCooked: {fileID: 8300000, guid: 571e0cbd756617941bf419a92eb4802f, type: 3}
+  cannonBallFired: {fileID: 8300000, guid: 0bd11f196f43b1b4496d7e86ce265265, type: 3}
   volume: 0
 --- !u!1 &1070893342
 GameObject:
@@ -4031,6 +4033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1231576591}
   tileDefs: {fileID: 2120869011}
+  audioManager: {fileID: 1056597924}
   pos: {x: 0, y: 0, z: 0}
   cannonBallFab: {fileID: 6137257043886034747, guid: cc8f8c58a3eafd44f9768816fbca44a2,
     type: 3}
@@ -4504,7 +4507,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5285,8 +5288,8 @@ RectTransform:
   m_Father: {fileID: 2052950715}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5747,7 +5750,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.47
+  orthographic size: 7.033
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -139,7 +139,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(circutBoard);
         computer = new TileType(16, "computer", computerTile, 0.6f, 5, steelSound);
         tileTypes.Add(computer);
-        cannon = new TileType(17, "cannon", cannonTile, 0.38f, 2, rockSound);
+        cannon = new TileType(17, "cannon", cannonTile, 0.38f, 1000, rockSound);
         tileTypes.Add(cannon);
 
         campfire = new TileType(18, "campfire", campfireTile, 0.31f, 1.65f, woodSound);

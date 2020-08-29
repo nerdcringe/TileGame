@@ -14,7 +14,8 @@ public class CharacterMovement : MonoBehaviour
     public TileDefs tileDefs;
     public Rigidbody2D rb;
 
-    public bool roundToTargetPos = false;
+    public bool roundToTargetX = false;
+    public bool roundToTargetY = false;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -37,35 +38,28 @@ public class CharacterMovement : MonoBehaviour
         Vector2 dir = vel;
         
         float currentSpeed = speed;
-        TileBase tile = FGTilemap.GetTile(targetPos);
+        TileBase tile = FGTilemap.GetTile(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0));
         if (tile != null)
         {
             if (tile == tileDefs.waterTile && !gameObject.tag.Equals("Fish"))
             {
-                currentSpeed *= 0.6f;
+                currentSpeed *= 0.65f;
             }
             if (tile == tileDefs.magmaTile)
             {
-                currentSpeed *= 0.35f;
+                currentSpeed *= 0.4f;
             }
         }
-        if (roundToTargetPos)
-        {
-            if (Mathf.Abs(rb.velocity.x) < 0.25)
-            {
-                dir.x = Mathf.RoundToInt(dir.x);
-            }
-            if (Mathf.Abs(rb.velocity.y) < 0.25)
-            {
-                dir.y = Mathf.RoundToInt(dir.y);
-            }
+        dir.Normalize();
+        dir *= currentSpeed;
 
-            dir = new Vector2(targetPos.x, targetPos.y) - rb.position;
-        }
-        else
+        if (roundToTargetX)
         {
-            dir.Normalize();
-            dir *= currentSpeed;
+            dir.x = targetPos.x - rb.position.x;
+        }
+        if (roundToTargetY)
+        {
+            dir.y = targetPos.y - rb.position.y;
         }
 
         dir /= Time.fixedDeltaTime;

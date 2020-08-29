@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip eat;
     public AudioClip fish;
     public AudioClip meatCooked;
+    public AudioClip cannonBallFired;
 
     public float volume;
 

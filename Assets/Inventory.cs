@@ -51,10 +51,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-    }
-
 
     public void RemoveItem(TileType tileType, int amount)
     {

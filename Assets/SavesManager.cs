@@ -29,9 +29,6 @@ public class SavesManager : MonoBehaviour
     void RefreshSavesList()
     {
         dropDown.ClearOptions();
-        //dropDown.options.Add(new OptionData("NONE"));
-        //selectButton.interactable = false;
-
         DirectoryInfo di = new DirectoryInfo(DataManager.saveLocation);
         FileInfo[] fi = di.GetFiles("*.txt");;
 
@@ -41,7 +38,6 @@ public class SavesManager : MonoBehaviour
         foreach (FileInfo file in fi)
         {
             dropDown.options.Add(new OptionData(GetNameMinusExtension(file.Name)));
-            print(file.Name + file.LastWriteTime.ToString());
         }
         if (fi.Length > 0)
         {

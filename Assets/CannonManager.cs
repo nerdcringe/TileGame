@@ -8,10 +8,11 @@ public class CannonManager : MonoBehaviour
     public Dictionary<Vector3Int, float> cannons = new Dictionary<Vector3Int, float>();
     public Tilemap tilemap;
     public TileDefs tileDefs;
+    public AudioManager audioManager;
 
-    const float detectionDistance = 6;
-    const float shootInterval = 4;
-    const float speed = 7.5f;
+    const float detectionDistance = 7;
+    const float shootInterval = 5;
+    const float speed = 7f;
 
     public Vector3Int pos;
     public GameObject cannonBallFab;
@@ -46,6 +47,7 @@ public class CannonManager : MonoBehaviour
                 {
                     GameObject cannonBall = GameObject.Instantiate(cannonBallFab);
                     cannonBall.transform.position = pos;
+                    audioManager.PlaySound(audioManager.cannonBallFired, pos);
 
                     // Set velocity of cannonball to face nearest bot at intended speed
                     Vector3 dir = bot.transform.position - pos;

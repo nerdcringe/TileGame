@@ -62,15 +62,6 @@ public class PlayerMovement : CharacterMovement
             }
         }
 
-        // If velocity is less than certain amount, snap targetPos to rounded position.
-        if (Mathf.Abs(rb.velocity.x) < 0.005)
-        {
-            targetPos.x = Mathf.RoundToInt(transform.position.x);
-        }
-        if (Mathf.Abs(rb.velocity.y) < 0.005)
-        {
-            targetPos.y = Mathf.RoundToInt(transform.position.y);
-        }
         base.Update();
 
         bool right = Input.GetKey("d");
@@ -78,26 +69,27 @@ public class PlayerMovement : CharacterMovement
         bool up = Input.GetKey("w");
         bool down = Input.GetKey("s");
 
-        roundToTargetPos = true;
+        roundToTargetX = true;
+        roundToTargetY = true;
         if (right)
         {
             vel.x = 1;
-            roundToTargetPos = false;
+            roundToTargetX = false;
         }
         if (left)
         {
             vel.x = -1;
-            roundToTargetPos = false;
+            roundToTargetX = false;
         }
         if (up)
         {
             vel.y = 1;
-            roundToTargetPos = false;
+            roundToTargetY = false;
         }
         if (down)
         {
             vel.y = -1;
-            roundToTargetPos = false;
+            roundToTargetY = false;
         }
 
         if (!right && !left && (up || down))
