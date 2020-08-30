@@ -50,7 +50,7 @@ public class FGTileManager : MonoBehaviour
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.steelTile);
                         }
-                        else if (noiseVal > 0.66 && Random.Range(0, 20) < 1)
+                        else if (noiseVal > 0.66 && Random.Range(0, (1-noiseVal) * 36) < 1)
                         {
                             tilemap.SetTile(new Vector3Int(x, y, 0), tileDefs.magmaTile);
                         }

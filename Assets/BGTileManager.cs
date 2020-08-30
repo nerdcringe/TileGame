@@ -15,7 +15,7 @@ public class BGTileManager : MonoBehaviour
         {
             tile = tileDefs.darkRockTile;
         }
-        else if (noiseVal < 0.365)
+        else if (noiseVal < 0.37)
         {
             tile = tileDefs.sandTile;
         }

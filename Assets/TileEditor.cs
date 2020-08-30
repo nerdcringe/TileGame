@@ -84,7 +84,6 @@ public class TileEditor : MonoBehaviour
                     tilemap.SetTile(tilePos, selectedTileType.tile);
                 }
 
-
                 // Add cannon manager for tile position if cannon is placed
                 if (tileDefs.cannon.Equals(selectedTileType))
                 {
@@ -179,7 +178,7 @@ public class TileEditor : MonoBehaviour
 
                 if (tileDefs.leaf.Equals(tileType))
                 {
-                    if (Random.Range(0, 8) == 0)
+                    if (Random.Range(0, 6) == 0)
                     {
                         tileType = tileDefs.acorn;
                     }
