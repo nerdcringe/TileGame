@@ -9,7 +9,7 @@ public class PlayerMovement : CharacterMovement
     public const float initialSpeed = 5f;
 
     public AudioManager audioManager;
-    List<Vector3Int> openedDoorPos;
+    public List<Vector3Int> openedDoorPos;
 
     // Start is called before the first frame update
     protected override void Start()

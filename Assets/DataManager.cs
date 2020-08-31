@@ -164,6 +164,13 @@ public class DataManager : MonoBehaviour
         saveData.playerY = player.transform.position.y;
         saveData.health = health.health;
 
+
+        foreach (Vector3Int doorPos in player.openedDoorPos)
+        {
+            saveData.openDoorXs.Add(doorPos.x);
+            saveData.openDoorYs.Add(doorPos.y);
+        }
+
         foreach (TileType tileType in inv.items.Keys)
         {
             saveData.inventoryItemIDs.Add(tileType.id);
@@ -249,6 +256,10 @@ public class DataManager : MonoBehaviour
             inv.AddItem(tileType, saveData.inventoryItemAmounts[i]);
         }
 
+        for (int i = 0; i < saveData.openDoorXs.Count; i++)
+        {
+            player.openedDoorPos.Add(new Vector3Int(saveData.openDoorXs[i], saveData.openDoorYs[i], 0));
+        }
         for (int i = 0; i < saveData.meatXs.Count; i++)
         {
             cookingManager.meats.Add(new Vector3Int(saveData.meatXs[i], saveData.meatYs[i], 0), saveData.meatCookingDurations[i]);
@@ -304,6 +315,9 @@ public class DataManager : MonoBehaviour
         public int health;
         public List<int> inventoryItemIDs = new List<int>();
         public List<int> inventoryItemAmounts = new List<int>();
+
+        public List<int> openDoorXs = new List<int>();
+        public List<int> openDoorYs = new List<int>();
 
         public List<int> meatXs = new List<int>();
         public List<int> meatYs = new List<int>();

@@ -56,13 +56,14 @@ public class CharacterMovement : MonoBehaviour
         if (roundToTargetX)
         {
             dir.x = targetPos.x - rb.position.x;
+            dir.x /= Time.fixedDeltaTime;
         }
         if (roundToTargetY)
         {
             dir.y = targetPos.y - rb.position.y;
+            dir.y /= Time.fixedDeltaTime;
         }
 
-        dir /= Time.fixedDeltaTime;
         dir = Vector2.ClampMagnitude(dir, currentSpeed);
         rb.velocity = dir;
     }
