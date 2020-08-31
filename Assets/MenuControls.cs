@@ -134,6 +134,11 @@ public class MenuControls : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
 
     public void Generate()
     {

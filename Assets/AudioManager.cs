@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    const float volScale = 1.75f;
+    const float volScale = 2.75f;
     const int volRadius = 20;
     const int panRadius = 16;
 
