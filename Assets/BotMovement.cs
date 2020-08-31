@@ -10,40 +10,41 @@ public class BotMovement : CharacterMovement
     public Transform player;
     public AudioManager audioManager;
 
-    public Vector3Int tilePos;
+    public Vector3Int breakPos;
     public float breakTime = 0;
 
     void BreakTiles()
-    {
-        
+    {   
         // If far enough away from tile position, stop targeting it.
-        if (Vector3.Distance(transform.position, tilePos) > 1.5f)
+        if (Vector3.Distance(transform.position, breakPos) > 1.2f)
         {
             breakTime = 0;
         }
 
         if (breakTime == 0)
         {
-            tilePos = targetPos;
-            Vector3Int side1 = new Vector3Int(Mathf.RoundToInt(transform.position.x), tilePos.y, 0);
-            Vector3Int side2 = new Vector3Int(tilePos.x, Mathf.RoundToInt(transform.position.y), 0);
+            //Vector3Int currrentPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
+            //Vector3Int roundedVel = new Vector3Int(Mathf.RoundToInt(vel.x), Mathf.RoundToInt(vel.y), 0);
 
-            // Don't break diagonally if both tiles next to diagonal are not empty.
-            if (FGTilemap.GetTile(side1) != null || FGTilemap.GetTile(side2) != null)
+            List<Vector3> cornerPos = new List<Vector3>();
+
+            cornerPos.Add(transform.position + new Vector3(0.5f, 0.5f, 0));
+            cornerPos.Add(transform.position + new Vector3(0.5f, -.5f, 0));
+            cornerPos.Add(transform.position + new Vector3(-.5f, 0.5f, 0));
+            cornerPos.Add(transform.position + new Vector3(-.5f, -.5f, 0));
+
+            foreach (Vector3 pos in cornerPos)
             {
-                // Choose either side to break.
-                if (Random.Range(0, 2) == 1)
+                Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + vel.x), Mathf.RoundToInt(pos.y + vel.y), 0);
+
+                if (FGTilemap.GetTile(tilePos) != null)
                 {
-                    tilePos = side1;
-                }
-                else
-                {
-                    tilePos = side2;
+                    breakPos = tilePos;
                 }
             }
         }
 
-        TileBase tile = FGTilemap.GetTile(tilePos);
+        TileBase tile = FGTilemap.GetTile(breakPos);
 
         if (tile != null)
         {
@@ -52,8 +53,8 @@ public class BotMovement : CharacterMovement
             TileType tileType = tileDefs.GetTileFromName(tile.name);
             if (breakTime > tileType.breakTime)
             {
-                FGTilemap.SetTile(tilePos, null);
-                audioManager.PlaySound(tileType.sound, tilePos);
+                FGTilemap.SetTile(breakPos, null);
+                audioManager.PlaySound(tileType.sound, breakPos);
                 breakTime = 0;
             }
         }

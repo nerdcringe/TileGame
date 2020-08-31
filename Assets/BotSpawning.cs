@@ -13,7 +13,7 @@ public class BotSpawning : MonoBehaviour
 
     const int spawnRadius = 16;
     const float maxBots = 3;
-    const float spawnIntervalMin = 18;
+    const float spawnIntervalMin = 16;
     const float spawnIntervalMax = 30;
 
     public GameObject botFab;
@@ -25,7 +25,7 @@ public class BotSpawning : MonoBehaviour
     public AudioManager audioManager;
 
     public float currentSpeed = initialSpeed;
-    public float currentSpawnInterval = 34;
+    public float currentSpawnInterval = spawnIntervalMax;
     float spawnTimer = 0;
 
     public void SpawnBot(Vector3 spawnPos)

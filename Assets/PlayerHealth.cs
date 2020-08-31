@@ -90,7 +90,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (tileDefs.cookedMeatTile.Equals(tilemap.GetTile(mov.targetPos)))
                 {
-                    audioManager.PlaySound(audioManager.eat, mov.targetPos);
+                    audioManager.PlaySound(audioManager.eat, transform.position);
                     health += 1;
                     tilemap.SetTile(mov.targetPos, null);
                 }

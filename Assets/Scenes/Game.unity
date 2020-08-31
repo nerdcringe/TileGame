@@ -3319,6 +3319,7 @@ MonoBehaviour:
   roundToTargetX: 0
   roundToTargetY: 1
   audioManager: {fileID: 1056597924}
+  openedDoorPos: []
 --- !u!50 &951022520
 Rigidbody2D:
   serializedVersion: 4
@@ -7595,6 +7596,7 @@ MonoBehaviour:
   cookedMeatTile: {fileID: 11400000, guid: e4986fb060c77c94390a5511f0016f2d, type: 2}
   rockSound: {fileID: 8300000, guid: f462e1b4c6092774ea5ac38b524ba46c, type: 3}
   woodSound: {fileID: 8300000, guid: 3823040392156ca4b83befdec3049d4b, type: 3}
+  leafSound: {fileID: 8300000, guid: 742b87077f7bf89459af6833a4508e24, type: 3}
   waterSound: {fileID: 8300000, guid: 0754a52b5b7a02c46a76fdef8ca83bab, type: 3}
   steelSound: {fileID: 8300000, guid: 976ab46fa02a8884e819a788b0544f10, type: 3}
   magmaSound: {fileID: 8300000, guid: 59ba8b8a339177643a4d9de80f49bc94, type: 3}

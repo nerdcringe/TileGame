@@ -70,6 +70,7 @@ public class TileDefs : MonoBehaviour
 
     public AudioClip rockSound;
     public AudioClip woodSound;
+    public AudioClip leafSound;
     public AudioClip waterSound;
     public AudioClip steelSound;
     public AudioClip magmaSound;
@@ -110,7 +111,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(rock);
         log = new TileType(3, "log", logTile, 0.28f, 1.5f, woodSound);
         tileTypes.Add(log);
-        leaf = new TileType(4, "leaf", leafTile, 0, 0.3f, null);
+        leaf = new TileType(4, "leaf", leafTile, 0, 0.3f, leafSound);
         tileTypes.Add(leaf);
         water = new TileType(5, "water", waterTile, 0.12f, 1000, waterSound);
         tileTypes.Add(water);

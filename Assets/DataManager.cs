@@ -191,6 +191,7 @@ public class DataManager : MonoBehaviour
             saveData.cannonLoadTimes.Add(cannonManager.cannons[pos]);
         }
 
+        saveData.botSpeed = botSpawning.currentSpeed;
         foreach (GameObject bot in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             saveData.botXs.Add(bot.transform.position.x);
@@ -269,6 +270,7 @@ public class DataManager : MonoBehaviour
             cannonManager.cannons.Add(new Vector3Int(saveData.cannonXs[i], saveData.cannonYs[i], 0), saveData.cannonLoadTimes[i]);
         }
 
+        botSpawning.currentSpeed = saveData.botSpeed;
         for (int i = 0; i < saveData.botXs.Count; i++)
         {
             botSpawning.SpawnBot(new Vector3(saveData.botXs[i], saveData.botYs[i], 0));
@@ -327,6 +329,7 @@ public class DataManager : MonoBehaviour
         public List<int> cannonYs = new List<int>();
         public List<float> cannonLoadTimes = new List<float>();
 
+        public float botSpeed = 3.4f;
         public List<float> botXs = new List<float>();
         public List<float> botYs = new List<float>();
 
