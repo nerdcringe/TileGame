@@ -3747,6 +3747,7 @@ MonoBehaviour:
   fish: {fileID: 8300000, guid: e3f95a8eac40611428c6f776036b8c26, type: 3}
   meatCooked: {fileID: 8300000, guid: 571e0cbd756617941bf419a92eb4802f, type: 3}
   cannonBallFired: {fileID: 8300000, guid: 0bd11f196f43b1b4496d7e86ce265265, type: 3}
+  pop: {fileID: 8300000, guid: db803018574baee4195920b2fc23d7e0, type: 3}
   volume: 0
 --- !u!1 &1070893342
 GameObject:

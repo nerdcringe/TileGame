@@ -140,14 +140,14 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(circutBoard);
         computer = new TileType(16, "computer", computerTile, 0.6f, 5, steelSound);
         tileTypes.Add(computer);
-        cannon = new TileType(17, "cannon", cannonTile, 0.38f, 1000, rockSound);
+        cannon = new TileType(17, "cannon", cannonTile, 0.42f, 1000, rockSound);
         tileTypes.Add(cannon);
 
-        campfire = new TileType(18, "campfire", campfireTile, 0.31f, 1.65f, woodSound);
+        campfire = new TileType(18, "campfire", campfireTile, 0.34f, 1.65f, woodSound);
         tileTypes.Add(campfire);    
-        rawMeat = new TileType(19, "raw meat", rawMeatTile, 0.20f, 1f, meatSound);
+        rawMeat = new TileType(19, "raw meat", rawMeatTile, 0.22f, 0.8f, meatSound);
         tileTypes.Add(rawMeat);
-        cookedMeat = new TileType(20, "cooked meat", cookedMeatTile, 0.25f, 1.25f, meatSound);
+        cookedMeat = new TileType(20, "cooked meat", cookedMeatTile, 0.28f, 0.25f, meatSound);
         tileTypes.Add(cookedMeat);
     }
 

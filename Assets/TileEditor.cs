@@ -72,6 +72,7 @@ public class TileEditor : MonoBehaviour
                 if (canWaterTree)
                 {
                     FGTileManager.Tree(tilePos.x, tilePos.y);
+                    audioManager.PlaySound(audioManager.pop, tilePos);
                 }
                 else if (canPlaceWood && tileDefs.woodFlooring.Equals(selectedTileType))
                 {

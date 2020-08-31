@@ -23,9 +23,6 @@ public class BotMovement : CharacterMovement
 
         if (breakTime == 0)
         {
-            //Vector3Int currrentPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
-            //Vector3Int roundedVel = new Vector3Int(Mathf.RoundToInt(vel.x), Mathf.RoundToInt(vel.y), 0);
-
             List<Vector3> cornerPos = new List<Vector3>();
 
             cornerPos.Add(transform.position + new Vector3(0.5f, 0.5f, 0));
@@ -33,13 +30,15 @@ public class BotMovement : CharacterMovement
             cornerPos.Add(transform.position + new Vector3(-.5f, 0.5f, 0));
             cornerPos.Add(transform.position + new Vector3(-.5f, -.5f, 0));
 
+            float velMultiplier = 0.1f;
             foreach (Vector3 pos in cornerPos)
             {
-                Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + vel.x), Mathf.RoundToInt(pos.y + vel.y), 0);
+                Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + (vel.x * velMultiplier)), Mathf.RoundToInt(pos.y + (vel.y * velMultiplier)), 0);
 
                 if (FGTilemap.GetTile(tilePos) != null)
                 {
                     breakPos = tilePos;
+                    break;
                 }
             }
         }
