@@ -72,6 +72,7 @@ public class TileDefs : MonoBehaviour
     public AudioClip woodSound;
     public AudioClip leafSound;
     public AudioClip waterSound;
+    public AudioClip acornSound;
     public AudioClip steelSound;
     public AudioClip magmaSound;
     public AudioClip meatSound;
@@ -115,7 +116,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(leaf);
         water = new TileType(5, "water", waterTile, 0.12f, 1000, waterSound);
         tileTypes.Add(water);
-        acorn = new TileType(6, "acorn", acornTile, 0, 0.35f, null);
+        acorn = new TileType(6, "acorn", acornTile, 0, 0.35f, acornSound);
         tileTypes.Add(acorn);
         steel = new TileType(7, "steel", steelTile, 0.75f, 1000, steelSound);
         tileTypes.Add(steel);

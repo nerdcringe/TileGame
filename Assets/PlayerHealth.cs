@@ -30,14 +30,12 @@ public class PlayerHealth : MonoBehaviour
         sr.sprite = deadSprite;
     }
 
-    public void TakeDamage(Vector2 pos)
+    public void TakeDamage()
     {
         if (!invincible)
         {
             health -= 1;
             sr.sprite = hurtSprite;
-            Vector2 diffPos = pos - rb.position;
-            rb.AddForce(diffPos * 5);
             invincible = true;
         }
 
@@ -66,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (tilemap.GetTile(pos) == tileDefs.magmaTile)
             {
-                TakeDamage(new Vector2(pos.x, pos.y));
+                TakeDamage();
             }
 
             if (invincibilityTimer == 0)
@@ -117,7 +115,7 @@ public class PlayerHealth : MonoBehaviour
             string tag = gameObject.tag;
             if ((collision.gameObject.tag.Equals("Enemy") && (tag.Equals("Player") || tag.Equals("Ally"))))
             {
-                TakeDamage(collision.gameObject.transform.position);
+                TakeDamage();
             }
         }
     }

@@ -144,19 +144,15 @@ public class TileEditor : MonoBehaviour
             gatherTime += Time.deltaTime;
 
             // Set proper gather sprite for gather stage.
-            if (gatherTime < tileType.gatherTime * 0.2)
-            {
-                highlightSR.sprite = gatherStage0;
-            }
-            else if (gatherTime < tileType.gatherTime * 0.4)
+            if (gatherTime < tileType.gatherTime * 0.25)
             {
                 highlightSR.sprite = gatherStage1;
             }
-            else if (gatherTime < tileType.gatherTime * 0.6)
+            else if (gatherTime < tileType.gatherTime * 0.5)
             {
                 highlightSR.sprite = gatherStage2;
             }
-            else if(gatherTime < tileType.gatherTime * 0.8)
+            else if(gatherTime < tileType.gatherTime * 0.75)
             {
                 highlightSR.sprite = gatherStage3;
             }
