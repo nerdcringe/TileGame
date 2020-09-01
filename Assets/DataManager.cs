@@ -215,10 +215,11 @@ public class DataManager : MonoBehaviour
 
     public void Respawn()
     {
-        player.transform.position = new Vector3(NoiseGen.width / 2, NoiseGen.height / 2);
         player.speed = PlayerMovement.initialSpeed;
         player.rb.velocity = Vector3.zero;
+        player.transform.position = new Vector3(NoiseGen.width / 2, NoiseGen.height / 2);
         player.targetPos = new Vector3Int(Mathf.RoundToInt(player.transform.position.x), Mathf.RoundToInt(player.transform.position.y), 0);
+        player.transform.position = player.targetPos;
         health.health = 4;
 
         inv.items.Clear();

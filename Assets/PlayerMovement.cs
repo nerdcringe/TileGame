@@ -15,6 +15,7 @@ public class PlayerMovement : CharacterMovement
     protected override void Start()
     {
         transform.position = new Vector2(NoiseGen.width/2, NoiseGen.height/2);
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, 0);
         speed = initialSpeed;
         openedDoorPos = new List<Vector3Int>();
         base.Start();
