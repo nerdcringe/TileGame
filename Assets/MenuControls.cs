@@ -7,6 +7,7 @@ public class MenuControls : MonoBehaviour
 {
     public DataManager dataManager;
     public SavesManager savesManager;
+    public AudioManager audioManager;
 
     public UIControls uiControls;
     public BGTileManager bgTileManager;
@@ -21,14 +22,13 @@ public class MenuControls : MonoBehaviour
     public GameObject inGameUI;
     public GameObject pauseMenu;
     public GameObject settingsMenu;
-    public GameObject gameOverScreen;
 
     public string loadedFileName;
     public bool inGame = false;
     public bool paused = false;
 
     bool generateAlready = false;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -130,6 +130,7 @@ public class MenuControls : MonoBehaviour
 
     public void SettingsMenu()
     {
+        dataManager.LoadSettings();
         titleMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
@@ -164,7 +165,7 @@ public class MenuControls : MonoBehaviour
     public void SelectSave()
     {
         loadedFileName = savesManager.dropDown.captionText.text;
-        string dataString = dataManager.ReadFile(loadedFileName);
+        string dataString = dataManager.ReadFile(DataManager.saveLocation, loadedFileName);
         dataManager.ResetLoadedGame();
         dataManager.LoadSaveData(dataString);
 

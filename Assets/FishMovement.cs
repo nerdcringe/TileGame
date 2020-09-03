@@ -47,30 +47,28 @@ public class FishMovement : CharacterMovement
             Destroy(gameObject);
         }
 
-        vel = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-        vel.Normalize();
-        vel *= speed;
-        vel = Vector2.ClampMagnitude(vel, speed);
+        dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        dir.Normalize();
 
-        if (vel.x > 0 && vel.y < 0)
+        if (dir.x > 0 && dir.y < 0)
         {
             sr.flipX = false;
             sr.flipY = false;
             transform.eulerAngles = new Vector3Int(0, 0, 0);
         }
-        if (vel.x < 0 && vel.y < 0)
+        if (dir.x < 0 && dir.y < 0)
         {
             sr.flipX = true;
             sr.flipY = false;
             transform.eulerAngles = new Vector3Int(0, 0, 0);
         }
-        if (vel.x > 0 && vel.y > 0)
+        if (dir.x > 0 && dir.y > 0)
         {
             sr.flipX = false;
             sr.flipY = false;
             transform.eulerAngles = new Vector3Int(0, 0, 90);
         }
-        if (vel.x < 0 && vel.y > 0)
+        if (dir.x < 0 && dir.y > 0)
         {
             sr.flipX = false;
             sr.flipY = true;

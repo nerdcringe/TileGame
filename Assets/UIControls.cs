@@ -29,8 +29,8 @@ public class UIControls : MonoBehaviour
     {
         craftingOpened = true;
         crafting.Clear();
-        craftingMenu.SetActive(true);
         tileEditor.SetActive(false);
+        craftingMenu.SetActive(true);
     }
 
     public void Respawn()

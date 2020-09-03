@@ -74,32 +74,32 @@ public class PlayerMovement : CharacterMovement
         roundToTargetY = true;
         if (right)
         {
-            vel.x = 1;
+            dir.x = 1;
             roundToTargetX = false;
         }
         if (left)
         {
-            vel.x = -1;
+            dir.x = -1;
             roundToTargetX = false;
         }
         if (up)
         {
-            vel.y = 1;
+            dir.y = 1;
             roundToTargetY = false;
         }
         if (down)
         {
-            vel.y = -1;
+            dir.y = -1;
             roundToTargetY = false;
         }
 
         if (!right && !left && (up || down))
         {
-            vel.x = 0;
+            dir.x = 0;
         }
         if (!up && !down && (right || left))
         {
-            vel.y = 0;
+            dir.y = 0;
         }
     }
 }

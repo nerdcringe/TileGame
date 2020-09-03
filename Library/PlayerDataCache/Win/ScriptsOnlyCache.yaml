@@ -1,5 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor-firstpass.dll:
+    - Assets.Plugins.ButtonSoundsEditor.Editor.ButtonSoundsEditor
+    Assembly-CSharp-firstpass.dll:
+    - Assets.Plugins.ButtonSoundsEditor.ButtonClickSound
     Assembly-CSharp.dll:
     - AudioManager
     - BGTileManager
@@ -191,6 +195,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15208}
     - Class: 114
       Script: {instanceID: 15232}
+    - Class: 114
+      Script: {instanceID: 31080}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -278,7 +284,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: eb5424a010f7e47cffe7840bfaae14df
+      Hash: a52192c8b1f8b5291a5a66a08b2ec014
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -566,7 +572,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: 27b53a227dc4a553c2584bebb49ca2f5
+      Hash: b292bc3e956977902c79945dbbc964e3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FishMovement
@@ -662,7 +668,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: e8b56dbe42aca06ab36cc0d9f960b2cf
+      Hash: 09158898c10852c14513d10f5a0c86d4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Crafting
@@ -740,7 +746,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: b261c24298b85bf63a866662a954166b
+      Hash: 53da9e26134643ca495431275239c74e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterMovement
@@ -764,7 +770,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 6455ebe6fd147cfeedf0d957f082ca86
+      Hash: 623519af70e6f3a610b76cb7a2c525a3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuControls
@@ -854,7 +860,7 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
-      Hash: fbafebab69d492d60bfa38c33a81a603
+      Hash: 2532ac13b56529e500dceca2d9b79eef
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BotMovement
@@ -930,6 +936,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: a8e7a079e40765cc864d72b13259a897
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: Assets.Plugins.ButtonSoundsEditor
+    className: ButtonClickSound
   platform: 5
   scenePathNames:
   - Assets/Scenes/Game.unity

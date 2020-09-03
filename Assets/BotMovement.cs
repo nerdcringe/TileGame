@@ -14,32 +14,33 @@ public class BotMovement : CharacterMovement
     public float breakTime = 0;
 
     void BreakTiles()
-    {   
-        // If far enough away from tile position, stop targeting it.
-        if (Vector3.Distance(transform.position, breakPos) > 1.2f)
-        {
-            breakTime = 0;
-        }
-
+    {
+        // If any vector from 4 corners of bot collider in direction of velocity hit a tile, then break the tiles corner by corner.
         if (breakTime == 0)
         {
             List<Vector3> cornerPos = new List<Vector3>();
 
             cornerPos.Add(transform.position + new Vector3(0.5f, 0.5f, 0));
             cornerPos.Add(transform.position + new Vector3(0.5f, -.5f, 0));
-            cornerPos.Add(transform.position + new Vector3(-.5f, 0.5f, 0));
             cornerPos.Add(transform.position + new Vector3(-.5f, -.5f, 0));
+            cornerPos.Add(transform.position + new Vector3(-.5f, 0.5f, 0));
+            float dirMultiplier = 0.05f;
 
-            float velMultiplier = 0.1f;
+            bool breakingTile = false;
             foreach (Vector3 pos in cornerPos)
             {
-                Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + (vel.x * velMultiplier)), Mathf.RoundToInt(pos.y + (vel.y * velMultiplier)), 0);
-
+                Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + (dir.x * dirMultiplier)), Mathf.RoundToInt(pos.y + (dir.y * dirMultiplier)), 0); 
                 if (FGTilemap.GetTile(tilePos) != null)
                 {
                     breakPos = tilePos;
+                    breakingTile = true;
                     break;
                 }
+            }
+            if (!breakingTile)
+            {
+                breakTime = 0;
+                breakPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
             }
         }
 
@@ -67,8 +68,8 @@ public class BotMovement : CharacterMovement
     protected override void Update()
     {
         base.Update();
-        vel = player.position - transform.position;
-        vel = vel.normalized;
+        dir = player.position - transform.position;
+        dir = dir.normalized;
 
         BreakTiles();
 

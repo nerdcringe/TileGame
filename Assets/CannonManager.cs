@@ -11,8 +11,8 @@ public class CannonManager : MonoBehaviour
     public AudioManager audioManager;
 
     const float detectionDistance = 7;
-    const float shootInterval = 5;
-    const float speed = 7f;
+    const float shootInterval = 4;
+    const float speed = 7.75f;
 
     public Vector3Int pos;
     public GameObject cannonBallFab;

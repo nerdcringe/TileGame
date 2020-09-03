@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class CharacterMovement : MonoBehaviour
 {
     public float speed;
-    public Vector2 vel;
+    public Vector2 dir;
     public Vector3Int targetPos;
 
     public Tilemap FGTilemap;
@@ -27,15 +27,15 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        targetPos = new Vector3Int(Mathf.RoundToInt(transform.position.x + vel.x), Mathf.RoundToInt(transform.position.y + vel.y), 0);
+        targetPos = new Vector3Int(Mathf.RoundToInt(transform.position.x + dir.x), Mathf.RoundToInt(transform.position.y + dir.y), 0);
         targetPos = NoiseGen.ClampComponentsInside(targetPos);
         transform.position = NoiseGen.ClampComponentsInside(transform.position);
-        vel = Vector2.zero;
+        dir = Vector2.zero;
     }
 
     void FixedUpdate()
     {
-        Vector2 dir = vel;
+        Vector2 vel = dir;
         
         float currentSpeed = speed;
         TileBase tile = FGTilemap.GetTile(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0));
@@ -50,21 +50,21 @@ public class CharacterMovement : MonoBehaviour
                 currentSpeed *= 0.4f;
             }
         }
-        dir.Normalize();
-        dir *= currentSpeed;
+        vel.Normalize();
+        vel *= currentSpeed;
 
         if (roundToTargetX)
         {
-            dir.x = targetPos.x - rb.position.x;
-            dir.x /= Time.fixedDeltaTime;
+            vel.x = targetPos.x - rb.position.x;
+            vel.x /= Time.fixedDeltaTime;
         }
         if (roundToTargetY)
         {
-            dir.y = targetPos.y - rb.position.y;
-            dir.y /= Time.fixedDeltaTime;
+            vel.y = targetPos.y - rb.position.y;
+            vel.y /= Time.fixedDeltaTime;
         }
 
-        dir = Vector2.ClampMagnitude(dir, currentSpeed);
-        rb.velocity = dir;
+        vel = Vector2.ClampMagnitude(vel, currentSpeed);
+        rb.velocity = vel;
     }
 }

@@ -66,9 +66,9 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(location + fileName + fileExtension, saveData);
     }
 
-    public string ReadFile(string fileName)
+    public string ReadFile(string location, string fileName)
     {
-        string file = saveLocation + fileName + fileExtension;
+        string file = location + fileName + fileExtension;
         if (File.Exists(file))
         {
             return File.ReadAllText(file);
@@ -294,12 +294,14 @@ public class DataManager : MonoBehaviour
         settingsData.volumeAmount = audioManager.volume;
 
         string settingsString = JsonUtility.ToJson(settingsData);
+        print(settingsString);
         WriteFile(settingsLocation, settingsFileName, settingsString, true);
     }
 
     public void LoadSettings()
     {
-        string settingsString = ReadFile(settingsLocation + settingsFileName + fileExtension);
+        string settingsString = ReadFile(settingsLocation, settingsFileName);
+        print(settingsString + "    \n" + settingsLocation + settingsFileName);
 
         if (settingsString != null)
         {
@@ -330,7 +332,7 @@ public class DataManager : MonoBehaviour
         public List<int> cannonYs = new List<int>();
         public List<float> cannonLoadTimes = new List<float>();
 
-        public float botSpeed = 3.4f;
+        public float botSpeed = BotSpawning.initialSpeed;
         public List<float> botXs = new List<float>();
         public List<float> botYs = new List<float>();
 

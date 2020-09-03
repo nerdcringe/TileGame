@@ -108,9 +108,9 @@ public class TileDefs : MonoBehaviour
         tileTypes = new List<TileType>();
         grass = new TileType(1, "grass", grassTile, 0.15f, 0.65f, null);
         tileTypes.Add(grass);
-        rock = new TileType(2, "rock", rockTile, 0.38f, 2, rockSound);
+        rock = new TileType(2, "rock", rockTile, 0.4f, 2, rockSound);
         tileTypes.Add(rock);
-        log = new TileType(3, "log", logTile, 0.28f, 1.5f, woodSound);
+        log = new TileType(3, "log", logTile, 0.3f, 1.5f, woodSound);
         tileTypes.Add(log);
         leaf = new TileType(4, "leaf", leafTile, 0, 0.3f, leafSound);
         tileTypes.Add(leaf);
@@ -122,7 +122,7 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(steel);
         sand = new TileType(8, "sand", sandTile, 0.1f, 0.8f, null);
         tileTypes.Add(sand);
-        darkRock = new TileType(9, "dark rock", darkRockTile, 0.3f, 2, rockSound);
+        darkRock = new TileType(9, "dark rock", darkRockTile, 0.4f, 2, rockSound);
         tileTypes.Add(darkRock);
         magma = new TileType(10, "magma", magmaTile, 0.6f, 1000, magmaSound);
         tileTypes.Add(magma);
@@ -132,7 +132,7 @@ public class TileDefs : MonoBehaviour
         openDoor = new TileType(12, "open door", openDoorTile, 0.75f, 1000, steelSound);
         tileTypes.Add(openDoor);
 
-        woodFlooring = new TileType(13, "wood flooring", woodFlooringTile, 0.31f, 1000, woodSound);
+        woodFlooring = new TileType(13, "wood flooring", woodFlooringTile, 0.32f, 1000, woodSound);
         tileTypes.Add(woodFlooring);
         lamp = new TileType(14, "lamp", lampTile, 0.3f, 4, steelSound);
         tileTypes.Add(lamp);
@@ -141,10 +141,10 @@ public class TileDefs : MonoBehaviour
         tileTypes.Add(circutBoard);
         computer = new TileType(16, "computer", computerTile, 0.6f, 5, steelSound);
         tileTypes.Add(computer);
-        cannon = new TileType(17, "cannon", cannonTile, 0.42f, 1000, rockSound);
+        cannon = new TileType(17, "cannon", cannonTile, 0.46f, 1000, rockSound);
         tileTypes.Add(cannon);
 
-        campfire = new TileType(18, "campfire", campfireTile, 0.34f, 1.65f, woodSound);
+        campfire = new TileType(18, "campfire", campfireTile, 0.35f, 1.65f, woodSound);
         tileTypes.Add(campfire);    
         rawMeat = new TileType(19, "raw meat", rawMeatTile, 0.22f, 0.8f, meatSound);
         tileTypes.Add(rawMeat);

@@ -9,7 +9,7 @@ public class BotSpawning : MonoBehaviour
 {
     // When world is loaded, bots start at initial speed and get faster with time.
     public const float initialSpeed = 3.4f;
-    const float maxSpeed = 4.6f;
+    const float maxSpeed = 4.5f;
 
     const int spawnRadius = 16;
     const float maxBots = 3;

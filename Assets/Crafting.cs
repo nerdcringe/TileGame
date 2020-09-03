@@ -13,6 +13,7 @@ public class Crafting : MonoBehaviour
     public Inventory inv;
     public TileDefs tileDefs;
     public RecipeDefs recipeDefs;
+    public AudioManager audioManager;
 
     public GameObject craftingMenu;
     public Image outputIcon;
@@ -45,8 +46,10 @@ public class Crafting : MonoBehaviour
     {
         gridTileTypes.Clear();
         grid.ClearAllTiles();
-        outputIcon.sprite = null;
         currentRecipe = null;
+        outputIcon.enabled = false;
+        outputCounter.text = "";
+        outputIcon.sprite = null;
     }
 
     // Update is called once per frame
@@ -67,6 +70,7 @@ public class Crafting : MonoBehaviour
                     if (GetAmountOnGrid(tileType) < inv.items[tileType] && tileType != null && preexistingTile == null)
                     {
                         grid.SetTile(gridPos, tileType.tile);
+                        audioManager.PlaySound(tileType.sound, Camera.main.transform.position);
                         gridTileTypes.Add(tileType);
                     }
                 }
@@ -76,6 +80,7 @@ public class Crafting : MonoBehaviour
                 if (preexistingTile != null)
                 {
                     gridTileTypes.Remove(tileDefs.GetTileFromName(preexistingTile.name));
+                    audioManager.PlaySound(tileType.sound, Camera.main.transform.position);
                     grid.SetTile(gridPos, null);
                 }
             }
@@ -183,9 +188,12 @@ public class Crafting : MonoBehaviour
             }
             outputCounter.text = "" + currentRecipe.outputAmount;
             
+            // Collect newly crafted item.
             if (Input.GetMouseButtonDown(0) && outputCollider.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
                 inv.AddItem(currentRecipe.output, currentRecipe.outputAmount);
+                audioManager.PlaySound(currentRecipe.output.sound, Camera.main.transform.position);
+
                 for (int i = 0; i < 4; i++)
                 {
                     if (i < gridTileTypes.Count)
