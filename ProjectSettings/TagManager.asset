@@ -51,11 +51,8 @@ TagManager:
   - name: Fish
     uniqueID: 3669280535
     locked: 0
-  - name: Foreground Tiles & Items
+  - name: Foreground
     uniqueID: 85988191
-    locked: 0
-  - name: Characters
-    uniqueID: 4139566143
     locked: 0
   - name: UI
     uniqueID: 3523585629

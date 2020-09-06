@@ -67,7 +67,8 @@ public class TileEditor : MonoBehaviour
         {
             bool canWaterTree = tileDefs.acornTile.Equals(tilemap.GetTile(tilePos)) && tileDefs.water.Equals(selectedTileType);
 
-            if (Input.GetMouseButton(1) && (tile == null || canWaterTree) && holdItem == selectedTileType && (!tileDefs.woodFlooring.Equals(selectedTileType) || canPlaceWood))
+            if (Input.GetMouseButton(1) && !Input.GetMouseButton(0) && (tile == null || canWaterTree) && holdItem == selectedTileType &&
+                (!tileDefs.woodFlooring.Equals(selectedTileType) || canPlaceWood))
             {
                 if (canWaterTree)
                 {
@@ -175,7 +176,7 @@ public class TileEditor : MonoBehaviour
 
                 if (tileDefs.leaf.Equals(tileType))
                 {
-                    if (Random.Range(0, 6) == 0)
+                    if (Random.Range(0, 8) == 0)
                     {
                         tileType = tileDefs.acorn;
                     }

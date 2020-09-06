@@ -29,9 +29,13 @@ public class TileType
 
         if (tile is AnimatedTile)
         {
-            sprite = ((AnimatedTile)tile).m_AnimatedSprites[0];
+            sprite = ((AnimatedTile) tile).m_AnimatedSprites[0];
         }
-        else
+        else if (tile is RuleTile)
+        {
+            sprite = ((RuleTile) tile).m_DefaultSprite;
+        }
+        else 
         {
             sprite = tile.sprite;
         }

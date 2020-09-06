@@ -146,12 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  vel: {x: 0, y: 0}
+  dir: {x: 0, y: 0}
   targetPos: {x: 0, y: 0, z: 0}
   FGTilemap: {fileID: 0}
   tileDefs: {fileID: 0}
   rb: {fileID: 0}
-  roundToTargetPos: 0
+  roundToTargetX: 0
+  roundToTargetY: 0
   player: {fileID: 0}
 --- !u!114 &-8114137247992989105
 MonoBehaviour:
