@@ -774,7 +774,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 893012802}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.89436924
+  m_Size: 0.9938803
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3469,7 +3469,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -3552,7 +3552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.3481297}
+  m_AnchoredPosition: {x: 0, y: 0.00039093173}
   m_SizeDelta: {x: 0, y: 58.096924}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &988312473 stripped
@@ -6141,7 +6141,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.165
+  orthographic size: 8.166
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7801,7 +7801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc1bef7eef665a49b9d3a227a431c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassTile: {fileID: 11400000, guid: 47d129372c872f14bbfa5d0bc4641f11, type: 2}
+  grassTile: {fileID: 11400000, guid: 5cd01d1a286c15d49b04748011a14eb0, type: 2}
   rockTile: {fileID: 11400000, guid: 5170dba8d83d76c4681902aebfd44884, type: 2}
   logTile: {fileID: 11400000, guid: dce44eba3892bc349b157370b25ecc28, type: 2}
   leafTile: {fileID: 11400000, guid: 5c5c428cc0e01504e88ab1bd96639d31, type: 2}

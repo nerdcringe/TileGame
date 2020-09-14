@@ -42,6 +42,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.2D.Tilemap.Extras.dll:
     - UnityEngine.Tilemaps.AnimatedTile
+    - UnityEngine.Tilemaps.RandomTile
     Unity.CollabProxy.Editor.dll:
     - Unity.Cloud.Collaborate.UserInterface.CollaborateWindow
     - Unity.Cloud.Collaborate.UserInterface.WindowCache
@@ -120,6 +121,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12152}
     - Class: 114
+      Script: {instanceID: 12272}
+    - Class: 114
       Script: {instanceID: 12386}
     - Class: 114
       Script: {instanceID: 12430}
@@ -164,39 +167,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13768}
     - Class: 114
-      Script: {instanceID: 13952}
+      Script: {instanceID: 13954}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 14022}
     - Class: 114
-      Script: {instanceID: 14076}
+      Script: {instanceID: 14078}
     - Class: 114
-      Script: {instanceID: 14096}
+      Script: {instanceID: 14098}
     - Class: 114
-      Script: {instanceID: 14134}
+      Script: {instanceID: 14136}
     - Class: 114
-      Script: {instanceID: 14484}
+      Script: {instanceID: 14486}
     - Class: 114
-      Script: {instanceID: 14496}
+      Script: {instanceID: 14498}
     - Class: 114
-      Script: {instanceID: 14538}
+      Script: {instanceID: 14540}
     - Class: 114
-      Script: {instanceID: 14836}
+      Script: {instanceID: 14612}
     - Class: 114
-      Script: {instanceID: 14938}
+      Script: {instanceID: 14840}
     - Class: 114
-      Script: {instanceID: 15022}
+      Script: {instanceID: 14942}
     - Class: 114
-      Script: {instanceID: 15068}
+      Script: {instanceID: 15026}
     - Class: 114
-      Script: {instanceID: 15152}
+      Script: {instanceID: 15072}
     - Class: 114
-      Script: {instanceID: 15186}
+      Script: {instanceID: 15156}
     - Class: 114
-      Script: {instanceID: 15208}
+      Script: {instanceID: 15190}
     - Class: 114
-      Script: {instanceID: 15232}
+      Script: {instanceID: 15212}
     - Class: 114
-      Script: {instanceID: 31080}
+      Script: {instanceID: 15236}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -284,7 +287,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: a52192c8b1f8b5291a5a66a08b2ec014
+      Hash: ed78c1542aceb0bdbf76db3522ecc7a6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -398,7 +401,7 @@ ScriptsOnlyBuild:
     className: DataManager
   - hash:
       serializedVersion: 2
-      Hash: 416c1816ed1839dc486d5c35d86ee97e
+      Hash: e98cbcd0e8c67446d6c2d487ed2f86ce
     assemblyName: Unity.2D.Tilemap.Extras.dll
     namespaceName: UnityEngine
     className: RuleTile
@@ -656,7 +659,7 @@ ScriptsOnlyBuild:
     className: FishSpawning
   - hash:
       serializedVersion: 2
-      Hash: d99dcc4cc42dfbdca57e2d9dc32bb0e2
+      Hash: 7884f8bfe2a8962154d477fb7e3fbdaa
     assemblyName: Unity.2D.Tilemap.Extras.dll
     namespaceName: UnityEngine
     className: HexagonalRuleTile
@@ -752,7 +755,7 @@ ScriptsOnlyBuild:
     className: CharacterMovement
   - hash:
       serializedVersion: 2
-      Hash: 416c1816ed1839dc486d5c35d86ee97e
+      Hash: e98cbcd0e8c67446d6c2d487ed2f86ce
     assemblyName: Unity.2D.Tilemap.Extras.dll
     namespaceName: UnityEngine
     className: IsometricRuleTile
@@ -798,6 +801,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: a8e7a079e40765cc864d72b13259a897
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: Assets.Plugins.ButtonSoundsEditor
+    className: ButtonClickSound
   - hash:
       serializedVersion: 2
       Hash: 490a4632ae50fb0b65bba5aaaf7edebd
@@ -936,12 +945,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: a8e7a079e40765cc864d72b13259a897
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: Assets.Plugins.ButtonSoundsEditor
-    className: ButtonClickSound
   platform: 5
   scenePathNames:
   - Assets/Scenes/Game.unity
