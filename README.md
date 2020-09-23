@@ -9,7 +9,7 @@ Mini survival game test thingy.
 * Press E to open crafting menu; use the same controls to gather/place tiles in the grid as you would in the world
 * Press escape to pause
 
-##Menus
+## Menus
 ### Title Menu
 * Click "new" to generate new world
 * Click "load" to generate previously saved world
