@@ -38,3 +38,4 @@ It will overwrite files of the same name, except in the case of the default name
 * Door (only allows player entry through): 1 x 2 of steel (either column)
 * Cannon (automatically defeats bots): 3 stone and 1 circut board (any configuration)
 * Lamp (prevents bots from being summoned in a 7x7 tile area): magma above steel (either column)
+* Computer (non-functional, purely decorational): 3 steel and 1 circut board (any configuration)
