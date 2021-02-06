@@ -23,6 +23,7 @@ ScriptsOnlyBuild:
     - HealthMonitor
     - Inventory
     - MenuControls
+    - ParticleAnimator
     - PlayerHealth
     - PlayerMovement
     - RecipeDefs
@@ -42,7 +43,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.2D.Tilemap.Extras.dll:
     - UnityEngine.Tilemaps.AnimatedTile
-    - UnityEngine.Tilemaps.RandomTile
+    - UnityEngine.Tilemaps.WeightedRandomTile
     Unity.CollabProxy.Editor.dll:
     - Unity.Cloud.Collaborate.UserInterface.CollaborateWindow
     - Unity.Cloud.Collaborate.UserInterface.WindowCache
@@ -84,6 +85,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
     - Class: 49
@@ -107,99 +110,101 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 644}
+      Script: {instanceID: 642}
     - Class: 114
-      Script: {instanceID: 11756}
+      Script: {instanceID: 11754}
     - Class: 114
-      Script: {instanceID: 11782}
+      Script: {instanceID: 11780}
     - Class: 114
-      Script: {instanceID: 12082}
+      Script: {instanceID: 12080}
+    - Class: 114
+      Script: {instanceID: 12096}
     - Class: 114
       Script: {instanceID: 12098}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12150}
     - Class: 114
-      Script: {instanceID: 12152}
+      Script: {instanceID: 12384}
     - Class: 114
-      Script: {instanceID: 12272}
+      Script: {instanceID: 12428}
     - Class: 114
-      Script: {instanceID: 12386}
+      Script: {instanceID: 12678}
     - Class: 114
-      Script: {instanceID: 12430}
+      Script: {instanceID: 12700}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12834}
     - Class: 114
-      Script: {instanceID: 12702}
+      Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 12836}
+      Script: {instanceID: 12886}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12944}
     - Class: 114
-      Script: {instanceID: 12888}
-    - Class: 114
-      Script: {instanceID: 12946}
+      Script: {instanceID: 13048}
     - Class: 114
       Script: {instanceID: 13050}
     - Class: 114
-      Script: {instanceID: 13052}
+      Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13070}
+      Script: {instanceID: 13114}
     - Class: 114
-      Script: {instanceID: 13116}
+      Script: {instanceID: 13242}
     - Class: 114
-      Script: {instanceID: 13244}
+      Script: {instanceID: 13256}
     - Class: 114
-      Script: {instanceID: 13258}
+      Script: {instanceID: 13280}
     - Class: 114
-      Script: {instanceID: 13282}
+      Script: {instanceID: 13372}
     - Class: 114
-      Script: {instanceID: 13374}
+      Script: {instanceID: 13492}
     - Class: 114
-      Script: {instanceID: 13494}
+      Script: {instanceID: 13536}
     - Class: 114
-      Script: {instanceID: 13538}
+      Script: {instanceID: 13646}
     - Class: 114
-      Script: {instanceID: 13648}
+      Script: {instanceID: 13690}
     - Class: 114
-      Script: {instanceID: 13692}
+      Script: {instanceID: 13704}
     - Class: 114
-      Script: {instanceID: 13706}
+      Script: {instanceID: 13766}
     - Class: 114
-      Script: {instanceID: 13768}
+      Script: {instanceID: 13952}
     - Class: 114
-      Script: {instanceID: 13954}
+      Script: {instanceID: 14020}
     - Class: 114
-      Script: {instanceID: 14022}
+      Script: {instanceID: 14076}
     - Class: 114
-      Script: {instanceID: 14078}
+      Script: {instanceID: 14096}
     - Class: 114
-      Script: {instanceID: 14098}
+      Script: {instanceID: 14134}
     - Class: 114
-      Script: {instanceID: 14136}
+      Script: {instanceID: 14180}
     - Class: 114
-      Script: {instanceID: 14486}
+      Script: {instanceID: 14484}
     - Class: 114
-      Script: {instanceID: 14498}
+      Script: {instanceID: 14496}
     - Class: 114
-      Script: {instanceID: 14540}
+      Script: {instanceID: 14538}
     - Class: 114
-      Script: {instanceID: 14612}
+      Script: {instanceID: 14610}
     - Class: 114
-      Script: {instanceID: 14840}
+      Script: {instanceID: 14838}
+    - Class: 114
+      Script: {instanceID: 14934}
     - Class: 114
       Script: {instanceID: 14942}
     - Class: 114
-      Script: {instanceID: 15026}
+      Script: {instanceID: 15028}
     - Class: 114
-      Script: {instanceID: 15072}
+      Script: {instanceID: 15074}
     - Class: 114
-      Script: {instanceID: 15156}
+      Script: {instanceID: 15158}
     - Class: 114
-      Script: {instanceID: 15190}
+      Script: {instanceID: 15192}
     - Class: 114
-      Script: {instanceID: 15212}
+      Script: {instanceID: 15214}
     - Class: 114
-      Script: {instanceID: 15236}
+      Script: {instanceID: 15238}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -207,6 +212,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -287,7 +296,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: ed78c1542aceb0bdbf76db3522ecc7a6
+      Hash: 1a9dd8035d0cb97b192c20ad5dde8884
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -395,7 +404,7 @@ ScriptsOnlyBuild:
     className: AdvancedRuleOverrideTile
   - hash:
       serializedVersion: 2
-      Hash: 4a040ee8bc23a91b613839682fb3ff2a
+      Hash: c51aeb9d97f6cedb40320f2e2c287e5f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DataManager
@@ -479,7 +488,7 @@ ScriptsOnlyBuild:
     className: CookingManager
   - hash:
       serializedVersion: 2
-      Hash: 0736ac4d1430004f5841d3877ff666c0
+      Hash: 45ad7d5a8bcf13656be17594e5f899be
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AudioManager
@@ -557,7 +566,7 @@ ScriptsOnlyBuild:
     className: SavesManager
   - hash:
       serializedVersion: 2
-      Hash: a9fca669cebd6e41c775e2f57f323629
+      Hash: cbe3f57aa4de8eee306ef843c8b2de4e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIControls
@@ -773,7 +782,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 623519af70e6f3a610b76cb7a2c525a3
+      Hash: 790677602891baa0fb7090af05819c4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuControls
@@ -831,6 +840,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 92ec886d3490dd0549bf77eed7836d2f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ParticleAnimator
   - hash:
       serializedVersion: 2
       Hash: c1b18f827e718ac22eb5ffc7ba007183

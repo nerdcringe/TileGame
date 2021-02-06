@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip meatCooked;
     public AudioClip cannonBallFired;
     public AudioClip pop;
+    public AudioClip bell;
 
     public float volume;
 
@@ -53,5 +54,10 @@ public class AudioManager : MonoBehaviour
         volumeText.text = "VOLUME: " + volumeSlider.value;
         volume = volumeSlider.value;
         AudioListener.volume = (volume / 100.0f) * volScale;
+    }
+
+    public void PlayBells()
+    {
+        PlaySound(bell, player.position);
     }
 }

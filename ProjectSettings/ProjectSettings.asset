@@ -13,8 +13,8 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: JoshH
-  productName: Tilegame Winter Update
-  defaultCursor: {fileID: 2800000, guid: 1704a5d8f36dd0e4aa8c774c19d84801, type: 3}
+  productName: Tilegame
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 16, y: 16}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
