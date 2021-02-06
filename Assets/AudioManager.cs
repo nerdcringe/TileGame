@@ -58,6 +58,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBells()
     {
-        PlaySound(bell, player.position);
+        if (Time.deltaTime > 0.5f)
+        {
+            PlaySound(bell, player.position);
+        }
     }
 }
