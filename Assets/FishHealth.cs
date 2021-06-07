@@ -12,11 +12,18 @@ public class FishHealth : MonoBehaviour
     public Tilemap tilemap;
 
     float outOfWaterTimer = 0;
+    bool cooked = false;
 
     public void Cease()
     {
         audioManager.PlaySound(audioManager.fish, transform.position);
-        tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0), tileDefs.rawMeatTile);
+        Tile meatTile = tileDefs.rawMeatTile;
+        if (cooked)
+        {
+            meatTile = tileDefs.cookedMeatTile;
+        }
+
+        tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0), meatTile);
         Destroy(gameObject);
     }
 
@@ -31,6 +38,7 @@ public class FishHealth : MonoBehaviour
         Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
         if (tileDefs.magmaTile.Equals(tilemap.GetTile(tilePos)) || outOfWaterTimer > outOfWaterMaxTime)
         {
+            cooked = true;
             Cease();
         }
 

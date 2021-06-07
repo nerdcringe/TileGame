@@ -13,12 +13,12 @@ public class NoiseGen
 
     public static Vector3 ClampComponentsInside(Vector3 v)
     {
-        return new Vector3(Mathf.Clamp(v.x, 0, NoiseGen.width - 1), Mathf.Clamp(v.y, 0, NoiseGen.height - 1), 0);
+        return new Vector3(Mathf.Clamp(v.x, 0, width - 1), Mathf.Clamp(v.y, 0, height - 1), 0);
     }
 
     public static Vector3Int ClampComponentsInside(Vector3Int v)
     {
-        return new Vector3Int(Mathf.Clamp(v.x, 0, NoiseGen.width - 1), Mathf.Clamp(v.y, 0, NoiseGen.height - 1), 0);
+        return new Vector3Int(Mathf.Clamp(v.x, 0, width - 1), Mathf.Clamp(v.y, 0, height - 1), 0);
     }
 
     static float GetNoise(int x, int y, float scale, float seed)
