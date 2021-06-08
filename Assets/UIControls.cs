@@ -14,7 +14,7 @@ public class UIControls : MonoBehaviour
     public DataManager dataManager;
 
 
-    bool gameOver = false;
+    public bool gameOver = false;
     public bool craftingOpened = false;
 
     public void EditTiles()
@@ -38,6 +38,7 @@ public class UIControls : MonoBehaviour
         EditTiles();
         dataManager.Respawn();
         gameOver = false;
+        player.ResetSprite();
     }
 
     // Update is called once per frame
@@ -63,7 +64,6 @@ public class UIControls : MonoBehaviour
                 EditTiles();
             }
         }
-
         if (player.health <= 0 && !gameOver)
         {
             craftingOpened = false;
@@ -71,6 +71,11 @@ public class UIControls : MonoBehaviour
             tileEditor.SetActive(false);
             gameOverScreen.SetActive(true);
             gameOver = true;
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Respawn();
+            }
         }
     }
 }

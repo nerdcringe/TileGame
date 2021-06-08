@@ -20,28 +20,38 @@ public class BotMovement : CharacterMovement
         {
             List<Vector3> cornerPos = new List<Vector3>();
 
-            cornerPos.Add(transform.position + new Vector3(0.5f, 0.5f, 0));
-            cornerPos.Add(transform.position + new Vector3(0.5f, -.5f, 0));
-            cornerPos.Add(transform.position + new Vector3(-.5f, -.5f, 0));
-            cornerPos.Add(transform.position + new Vector3(-.5f, 0.5f, 0));
+            cornerPos.Add(transform.position + new Vector3( 0.5f, 0.5f, 0));
+            cornerPos.Add(transform.position + new Vector3( 0.5f,-0.5f, 0));
+            cornerPos.Add(transform.position + new Vector3(-0.5f,-0.5f, 0));
+            cornerPos.Add(transform.position + new Vector3(-0.5f, 0.5f, 0));
             float dirMultiplier = 0.05f;
 
-            bool breakingTile = false;
-            foreach (Vector3 pos in cornerPos)
+
+            if (FGTilemap.GetTile(targetPos) != null)
             {
-                Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + (dir.x * dirMultiplier)), Mathf.RoundToInt(pos.y + (dir.y * dirMultiplier)), 0); 
-                if (FGTilemap.GetTile(tilePos) != null)
+                breakPos = targetPos;
+            }
+            else
+            {
+                bool choseTile = false;
+
+                foreach (Vector3 pos in cornerPos)
                 {
-                    breakPos = tilePos;
-                    breakingTile = true;
-                    break;
+                    Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(pos.x + (dir.x * dirMultiplier)), Mathf.RoundToInt(pos.y + (dir.y * dirMultiplier)), 0); 
+                    if (FGTilemap.GetTile(tilePos) != null)
+                    {
+                        breakPos = tilePos;
+                        choseTile = true;
+
+                        break;
+                    }
+                }
+                if (!choseTile)
+                {
+                    breakPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
                 }
             }
-            if (!breakingTile)
-            {
-                breakTime = 0;
-                breakPos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
-            }
+
         }
 
         TileBase tile = FGTilemap.GetTile(breakPos);

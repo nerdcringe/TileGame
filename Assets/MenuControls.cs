@@ -82,6 +82,8 @@ public class MenuControls : MonoBehaviour
         Time.timeScale = 0;
         inGameUI.SetActive(false);
         tileEditor.SetActive(false);
+        uiControls.gameOverScreen.SetActive(false);
+        uiControls.gameOver = false;
         inGame = false;
     }
 
@@ -94,6 +96,7 @@ public class MenuControls : MonoBehaviour
         savesMenu.SetActive(false);
         inGameUI.SetActive(true);
         tileEditor.SetActive(true);
+        uiControls.player.ResetSprite();
 
         if (!resumeLastButton.activeSelf)
         {

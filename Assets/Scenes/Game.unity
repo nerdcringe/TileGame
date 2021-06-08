@@ -3817,6 +3817,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 758477084}
   player: {fileID: 951022522}
   dataManager: {fileID: 1927873388}
+  gameOver: 0
   craftingOpened: 0
 --- !u!1 &1056597921
 GameObject:
@@ -6232,7 +6233,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.166
+  orthographic size: 8.159
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6276,7 +6277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 951022518}
   moveRate: 0.32
-  smoothnessCurve: 1.24
+  smoothnessCurve: 1.12
 --- !u!1 &1802843441
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,11 @@ public class PlayerHealth : MonoBehaviour
         sr.sprite = deadSprite;
     }
 
+    public void ResetSprite()
+    {
+        sr.sprite = defaultSprite;
+    }
+
     public void TakeDamage()
     {
         if (!invincible)

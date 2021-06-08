@@ -36,9 +36,14 @@ public class FishHealth : MonoBehaviour
     void Update()
     {
         Vector3Int tilePos = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0);
-        if (tileDefs.magmaTile.Equals(tilemap.GetTile(tilePos)) || outOfWaterTimer > outOfWaterMaxTime)
+        if (tileDefs.magmaTile.Equals(tilemap.GetTile(tilePos)))
         {
             cooked = true;
+            Cease();
+        }
+
+        if (outOfWaterTimer > outOfWaterMaxTime)
+        {
             Cease();
         }
 

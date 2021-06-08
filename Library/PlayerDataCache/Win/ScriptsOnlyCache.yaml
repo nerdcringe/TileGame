@@ -557,7 +557,7 @@ ScriptsOnlyBuild:
     className: SavesManager
   - hash:
       serializedVersion: 2
-      Hash: a9fca669cebd6e41c775e2f57f323629
+      Hash: cbe3f57aa4de8eee306ef843c8b2de4e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIControls
